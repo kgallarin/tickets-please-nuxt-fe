@@ -4,7 +4,6 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { defineStore, skipHydrate } from 'pinia';
 
 export interface AppState {
-	breakpoints: IBreakpoints;
 	loading: {
 		global: boolean;
 	};
