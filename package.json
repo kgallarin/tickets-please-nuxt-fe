@@ -1,36 +1,41 @@
 {
-  "name": "tickets-nuxt-fe",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "tsc": "vue-tsc --noEmit",
-    "lint:watch": "vue-tsc --watch"
-  },
-  "dependencies": {
-    "@pinia/nuxt": "^0.11.3",
-    "@tailwindcss/vite": "^4.2.4",
-    "@vueuse/core": "^14.3.0",
-    "nuxt": "^4.4.4",
-    "pinia": "^3.0.4",
-    "tailwindcss": "^4.2.4",
-    "vue": "^3.5.33",
-    "vue-router": "^5.0.6"
-  },
-  "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/node": "^25.6.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-vue": "^10.9.1",
-    "globals": "^17.6.0",
-    "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "^0.8.0",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.2",
-    "vue-tsc": "^3.2.8"
-  }
+	"name": "tickets-nuxt-fe",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"tsc": "vue-tsc --noEmit",
+		"lint:watch": "vue-tsc --watch",
+		"test": "vitest"
+	},
+	"dependencies": {
+		"@pinia/nuxt": "^0.11.3",
+		"@tailwindcss/vite": "^4.2.4",
+		"@vueuse/core": "^14.3.0",
+		"nuxt": "^4.4.4",
+		"pinia": "^3.0.4",
+		"tailwindcss": "^4.2.4",
+		"vue": "^3.5.33",
+		"vue-router": "^5.0.6"
+	},
+	"devDependencies": {
+		"@nuxt/test-utils": "^4.0.3",
+		"@testing-library/vue": "^8.1.0",
+		"@trivago/prettier-plugin-sort-imports": "^6.0.2",
+		"@types/node": "^25.6.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-vue": "^10.9.1",
+		"globals": "^17.6.0",
+		"happy-dom": "^20.9.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-tailwindcss": "^0.8.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.2",
+		"vitest": "^4.1.7",
+		"vue-tsc": "^3.2.8"
+	}
 }

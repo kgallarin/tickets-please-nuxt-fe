@@ -1,7 +1,4 @@
-import type { Ref } from 'vue';
-
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
-import { defineStore, skipHydrate } from 'pinia';
+import { defineStore } from 'pinia';
 
 export interface AppState {
 	loading: {
