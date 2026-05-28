@@ -1,11 +1,12 @@
 <script setup lang="ts">
-
+	const appStore = useAppStore();
 </script>
 
 <template>
-this is home
+	<div>
+		<div v-if="appStore.loading.global">Loading...</div>
+		alavie
+	</div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
