@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build Code
+    name: Build Code and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -24,3 +24,6 @@ jobs:
 
       - name: Build frontend assets
         run: npm run build
+
+      - name: Run tests
+        run: npm run test
