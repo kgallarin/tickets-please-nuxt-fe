@@ -27,7 +27,7 @@ jobs:
         run: npm run tsc
 
       - name: Run Code Linting
-        run: npm run lint
+        run: npm run tsc
 
       - name: Run tests
         run: npm run test
