@@ -23,10 +23,3 @@
 		<slot />
 	</div>
 </template>
-
-<style scoped>
-	@reference '@css/app.css';
-	.router-link-active {
-		@apply font-bold text-blue-500;
-	}
-</style>

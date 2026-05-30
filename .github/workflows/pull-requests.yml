@@ -1,9 +1,26 @@
-#name: pull-requests.yml
-#on:
-#  pull_request:
-#    branches:
-#      - feature/*
-#
-#jobs:
-#  build:
-#    runs-on: ubuntu-latest
+name: pull-requests.yml
+on:
+  pull_request:
+    branches:
+      - feature/*
+
+jobs:
+  build:
+    name: Build Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
