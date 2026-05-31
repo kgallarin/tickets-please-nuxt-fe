@@ -34,5 +34,3 @@ jobs:
 
       - name: Build frontend assets
         run: npm run build
-
-
