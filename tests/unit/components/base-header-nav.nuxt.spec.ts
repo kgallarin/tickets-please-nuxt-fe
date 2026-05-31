@@ -7,7 +7,7 @@ import { describe, expect, test } from 'vitest';
 const renderBaseHeaderNav = async (): Promise<RenderResult> => {
 	return renderSuspended(BaseHeaderNav);
 };
-describe('BaseHeaderNav', (): null => {
+describe('BaseHeaderNav', (): void => {
 	test('renders home link', async (): Promise<void> => {
 		const { getByText } = await renderBaseHeaderNav();
 
