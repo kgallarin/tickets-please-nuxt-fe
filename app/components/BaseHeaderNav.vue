@@ -11,10 +11,6 @@
 					label: 'Home',
 					href: '/',
 				},
-				{
-					label: 'Create Tickets',
-					href: '/tickets/create',
-				},
 			],
 		},
 	);
@@ -28,7 +24,7 @@
 		<div>
 			<ClientOnly>
 				<ul class="flex space-x-8">
-					<li v-for="link in navLinks" :key="link.label">
+					<li v-for="link in navLinks" :key="link.href">
 						<NuxtLink :to="link.href"> {{ link.label }}</NuxtLink>
 					</li>
 				</ul>
