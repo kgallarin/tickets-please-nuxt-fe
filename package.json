@@ -4,12 +4,14 @@
 	"private": true,
 	"scripts": {
 		"build": "nuxt build",
-		"dev": "nuxt dev",
+		"dev": "nuxt dev tsc:watch",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"tsc": "vue-tsc --noEmit",
-		"lint:watch": "vue-tsc --watch",
+		"tsc:watch": "vue-tsc --watch",
+		"lint": "eslint . --fix",
+		"lint:check": "eslint .",
 		"test": "vitest",
 		"test:ci": "vitest --run"
 	},
