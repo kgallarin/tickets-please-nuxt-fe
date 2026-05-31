@@ -1,9 +1,5 @@
-<script setup lang="ts">
-	const appStore = useAppStore();
-</script>
+<script setup lang="ts"></script>
 
 <template>
-	<ClientOnly>
-		<div>alavie sample</div>
-	</ClientOnly>
+	<div>alavie sample</div>
 </template>
