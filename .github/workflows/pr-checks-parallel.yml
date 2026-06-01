@@ -9,16 +9,7 @@ on:
         - main
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: ./.github/actions/install
-        with:
-          node-version: '24'
-
   ts-check:
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -28,7 +19,6 @@ jobs:
       - run: npm run tsc
 
   lint:
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -38,7 +28,6 @@ jobs:
       - run: npm run lint:check
 
   test:
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -48,7 +37,6 @@ jobs:
       - run: npm run test
 
   build:
-    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
