@@ -1,0 +1,21 @@
+@import "typography.css";
+@import "tailwindcss";
+@tailwind utilities;
+
+
+@theme {
+	--color-primary: #000;
+}
+
+
+html, body {
+	margin: 0;
+	padding: 0;
+
+	min-width: 320px;
+	font-size: 16px;
+}
+
+h1,h2 {
+	font-family: 'LinoWrite', sans-serif;
+}

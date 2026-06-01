@@ -3,5 +3,5 @@
 	"compilerOptions": {
 		"types": ["node", "nuxt"]
 	},
-	"include": ["tests/**/*.spec.ts"]
+	"include": ["**/*", ".nuxt/nuxt.d.ts", "tests/**/*.spec.ts"]
 }
