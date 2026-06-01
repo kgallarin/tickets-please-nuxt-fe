@@ -17,13 +17,13 @@
 </script>
 
 <template>
-	<nav class="flex items-center justify-between bg-white p-6 shadow">
+	<nav class="flex items-center justify-between border-b border-gray-100 p-4">
 		<div>
-			<NuxtLink to="/">Logo</NuxtLink>
+			<NuxtLink to="/" class="font-linowrite">Tickets</NuxtLink>
 		</div>
-		<div>
+		<div class="mr-5">
 			<ClientOnly>
-				<ul class="flex space-x-8">
+				<ul class="flex space-x-4">
 					<li v-for="link in navLinks" :key="link.href">
 						<NuxtLink :to="link.href"> {{ link.label }}</NuxtLink>
 					</li>

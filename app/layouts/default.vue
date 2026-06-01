@@ -5,7 +5,7 @@
 	<div class="mx-auto min-h-screen">
 		<Title>{{ tile }}</Title>
 		<base-header-nav />
-		<div class="mx-auto px-4">
+		<div class="mx-auto mt-8 w-full px-4 md:max-w-2xl lg:max-w-5xl">
 			<slot />
 		</div>
 	</div>

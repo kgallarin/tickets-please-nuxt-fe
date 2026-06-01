@@ -18,7 +18,7 @@
 <template>
 	<div
 		data-role="base-ticket"
-		class="mx-auto min-h-32 w-64 bg-[url('/images/backgrounds/ticket.png')] bg-contain bg-no-repeat"
+		class="mx-auto h-32 w-64 bg-[url('/images/backgrounds/ticket.png')] bg-contain bg-no-repeat md:h-36 md:w-72"
 	>
 		<div class="ticket-inner flex h-full flex-col px-11 py-5">
 			<div class="flex w-full flex-col items-center justify-between">

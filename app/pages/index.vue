@@ -15,7 +15,7 @@
 
 <template>
 	<Title> Home | {{ title }}</Title>
-	<div class="mt-4 grid grid-cols-1 gap-4">
+	<div class="mx-auto mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 		<base-ticket :ticket="ticketSample" />
 		<base-ticket :ticket="ticketSample" />
 
