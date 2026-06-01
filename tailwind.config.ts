@@ -1,29 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-    mode: 'jit',
-    content: ['./resources/js/**/*.{js,vue}', './resources/views/**/*.blade.php'],
-    theme: {
-        extend: {
-            screens: {
-                sm: '640px',
-                md: '768px',
-                lg: '1024px',
-                xl: '1280px',
-                '2xl': '1536px',
-            },
+	mode: 'jit',
+	content: ['./app/**/*.{js,vue,css}', './tests/**/*.{js,ts}'],
+	theme: {
+		extend: {
+			screens: {
+				sm: '640px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
+				'2xl': '1536px',
+			},
 
-            colors: {
-                primary: 'var(--color-primary)',
-                secondary: 'var(--color-secondary)',
-                tertiary: 'var(--color-tertiary)',
-            },
+			colors: {
+				primary: 'var(--color-primary)',
+				secondary: 'var(--color-secondary)',
+				tertiary: 'var(--color-tertiary)',
+			},
 
-            fontFamily: {
-            },
-        },
-    },
-    plugins: [],
+			fontFamily: {
+				linowrite: ['LinoWrite', 'sans-serif'],
+			},
+		},
+	},
+	plugins: [],
 };
 
 export default module.exports;

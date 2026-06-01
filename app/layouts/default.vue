@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-	import BaseHeaderNav from '../components/BaseHeaderNav.vue';
-
 	const tile = useState('title', () => 'Nuxt 3 + Tailwind CSS');
 </script>
 <template>
-	<div class="min-h-screen bg-gray-100">
+	<div class="mx-auto min-h-screen">
 		<Title>{{ tile }}</Title>
-		<!--    content here-->
 		<base-header-nav />
-		<slot />
+		<div class="mx-auto px-4">
+			<slot />
+		</div>
 	</div>
 </template>

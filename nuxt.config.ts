@@ -1,4 +1,4 @@
-import { URL, fileURLToPath } from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 import tailwindcss from '@tailwindcss/vite';
 import { defineNuxtConfig } from 'nuxt/config';
@@ -18,8 +18,6 @@ export default defineNuxtConfig({
 		},
 	},
 	alias: {
-		'@images': fileURLToPath(new URL('./app/assets/images', import.meta.url)),
-		'@css': fileURLToPath(new URL('./app/assets/css', import.meta.url)),
 		'@components': fileURLToPath(new URL('./app/components', import.meta.url)),
 		'@pages': fileURLToPath(new URL('./app/pages', import.meta.url)),
 	},
