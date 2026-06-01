@@ -1,0 +1,22 @@
+name: install deps
+
+author: kg
+
+description: install
+
+inputs:
+  node-version:
+    description: Node.js version to use for installation
+    required: true
+    default: '24'
+
+runs:
+  using: composite
+
+  steps:
+    - uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+    - run: npm ci
+      shell: bash
