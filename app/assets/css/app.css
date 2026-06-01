@@ -5,6 +5,7 @@
 
 @theme {
 	--color-primary: #000;
+	--font-linowrite: "LinoWrite", sans-serif;
 }
 
 
@@ -17,5 +18,5 @@ html, body {
 }
 
 h1,h2 {
-	font-family: 'LinoWrite', sans-serif;
+	@apply font-linowrite;
 }

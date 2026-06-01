@@ -2,7 +2,7 @@
 
 module.exports = {
 	mode: 'jit',
-	content: ['./resources/js/**/*.{js,vue}', './resources/views/**/*.blade.php'],
+	content: ['./app/**/*.{js,vue,css}', './tests/**/*.{js,ts}'],
 	theme: {
 		extend: {
 			screens: {
