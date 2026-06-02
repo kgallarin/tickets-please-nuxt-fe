@@ -6,6 +6,8 @@
 @theme {
 	--color-primary: #000;
 	--font-linowrite: "LinoWrite", sans-serif;
+	--font-roboto: "Roboto", sans-serif;
+	--font-inter: "Inter", sans-serif;
 }
 
 
@@ -15,8 +17,13 @@ html, body {
 
 	min-width: 320px;
 	font-size: 16px;
+	@apply font-inter;
 }
 
 h1,h2 {
 	@apply font-linowrite;
+}
+
+h3, h4 {
+	@apply font-roboto;
 }

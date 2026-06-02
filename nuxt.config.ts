@@ -5,12 +5,27 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
+	css: ['~/assets/css/app.css'],
+	modules: [
+		[
+			'@nuxtjs/google-fonts',
+			{
+				families: {
+					Roboto: '300..700',
+					Inter: '300..700',
+				},
+				display: 'swap',
+				preconnect: true,
+				preload: true,
+				download: false,
+			},
+		],
+		'@pinia/nuxt',
+	],
 	devtools: { enabled: true },
-	modules: ['@pinia/nuxt'],
 	future: {
 		compatibilityVersion: 4,
 	},
-	css: ['~/assets/css/app.css'],
 	vite: {
 		plugins: [tailwindcss()],
 		optimizeDeps: {
