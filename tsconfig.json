@@ -1,7 +1,4 @@
 {
 	"extends": "./.nuxt/tsconfig.json",
-	"compilerOptions": {
-		"types": ["node", "nuxt"]
-	},
-	"include": [".nuxt/nuxt.d.ts", "tests/**/*.spec.ts"]
+	"include": ["./types/**/*.d.ts", "./utils/**/*.ts", "./tests/**/*.spec.ts", "./plugins/**/*.ts"]
 }

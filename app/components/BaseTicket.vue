@@ -1,17 +1,5 @@
 <script setup lang="ts">
-	type Author = {
-		id: string;
-		name: string;
-	};
-	type Ticket = {
-		id: string;
-		title: string;
-		status: string;
-		created_at: string;
-		updated_at: string;
-		author: Author;
-	};
-
+	import type { Ticket } from '@appTypes/Ticket';
 	defineProps<{ ticket?: Ticket }>();
 </script>
 
@@ -23,16 +11,16 @@
 		<div class="ticket-inner flex h-full flex-col px-11 py-5">
 			<div class="flex w-full flex-col items-center justify-between">
 				<h1 class="text-xl">
-					{{ ticket?.title }}
+					{{ ticket?.attributes.title }}
 				</h1>
 
 				<h3>
-					{{ ticket?.status }}
+					{{ ticket?.attributes.status }}
 				</h3>
 			</div>
 
 			<div class="mt-auto text-right">
-				<span class="text-sm">{{ ticket?.author.name }}</span>
+				<span class="text-sm">{{ ticket.relationships.author.data.name }}</span>
 			</div>
 		</div>
 	</div>

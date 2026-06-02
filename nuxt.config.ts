@@ -35,5 +35,7 @@ export default defineNuxtConfig({
 	alias: {
 		'@components': fileURLToPath(new URL('./app/components', import.meta.url)),
 		'@pages': fileURLToPath(new URL('./app/pages', import.meta.url)),
+		'@appTypes': fileURLToPath(new URL('./types', import.meta.url)),
+		'@utils': fileURLToPath(new URL('./utils', import.meta.url)),
 	},
 });
