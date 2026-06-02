@@ -11,6 +11,10 @@
 					label: 'Home',
 					href: '/',
 				},
+				{
+					label: 'Authors',
+					href: '/authors',
+				},
 			],
 		},
 	);
