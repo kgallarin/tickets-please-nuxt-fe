@@ -21,6 +21,8 @@ module.exports = {
 
 			fontFamily: {
 				linowrite: ['LinoWrite', 'sans-serif'],
+				roboto: ['Roboto', 'sans-serif'],
+				inter: ['Inter', 'sans-serif'],
 			},
 		},
 	},
