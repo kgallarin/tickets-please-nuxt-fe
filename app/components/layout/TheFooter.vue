@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template></template>
+<template>
+	<div>footer lives here.</div>
+</template>
 
 <style scoped></style>
