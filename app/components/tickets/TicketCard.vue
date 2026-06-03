@@ -1,17 +1,5 @@
 <script setup lang="ts">
-	type Author = {
-		id: string;
-		name: string;
-	};
-	type Ticket = {
-		id: string;
-		title: string;
-		status: string;
-		created_at: string;
-		updated_at: string;
-		author: Author;
-	};
-
+	import type { Ticket } from '@appTypes/Ticket';
 	defineProps<{ ticket?: Ticket }>();
 </script>
 
