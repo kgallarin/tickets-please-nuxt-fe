@@ -20,7 +20,7 @@
 			</div>
 
 			<div class="mt-auto text-right">
-				<span class="text-sm">{{ ticket.author.name }}</span>
+				<span class="text-sm">{{ ticket?.author.name }}</span>
 			</div>
 		</div>
 	</div>
