@@ -1,4 +1,4 @@
-import BaseHeaderNav from '@components/base/BaseHeaderNav.vue';
+import BaseHeaderNav from '@/components/BaseHeaderNav.vue';
 import { renderSuspended } from '@nuxt/test-utils/runtime';
 import '@testing-library/jest-dom';
 import { type RenderResult } from '@testing-library/vue';

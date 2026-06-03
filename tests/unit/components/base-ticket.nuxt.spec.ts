@@ -1,12 +1,25 @@
-import TicketCard from '@components/tickets/TicketCard.vue';
+import BaseTicket from '@/components/BaseTicket.vue';
 import { renderSuspended } from '@nuxt/test-utils/runtime';
 import '@testing-library/jest-dom';
 import { type RenderResult } from '@testing-library/vue';
 import { describe, expect, test } from 'vitest';
-import type { Ticket } from '~~/types/Ticket';
+
+type Author = {
+	id: string;
+	name: string;
+};
+
+type Ticket = {
+	id: string;
+	title: string;
+	status: string;
+	created_at: string;
+	updated_at: string;
+	author: Author;
+};
 
 const renderBaseTicket = async (props: { ticket: Ticket }): Promise<RenderResult> => {
-	return renderSuspended(TicketCard, {
+	return renderSuspended(BaseTicket, {
 		global: {},
 		props,
 	});
@@ -19,10 +32,8 @@ const defaultTicketProp: Ticket = {
 	created_at: '2023-01-01T00:00:00Z',
 	updated_at: '2023-01-01T00:00:00Z',
 	author: {
-		id: 1,
-		email: 'john.doe@example.com',
+		id: '1',
 		name: 'John Doe',
-		isAdmin: false,
 	},
 };
 
