@@ -3,7 +3,7 @@
 
 	const title = useState<string>('title');
 
-	const { items } = useApiList<Ticket>('http://127.0.0.1:8000/api/v1/tickets');
+	const { items } = useApiFetchList<Ticket>('http://127.0.0.1:8000/api/v1/tickets');
 </script>
 
 <template>

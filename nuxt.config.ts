@@ -23,6 +23,9 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 	],
 	devtools: { enabled: true },
+	imports: {
+		dirs: ['composables/**'],
+	},
 	future: {
 		compatibilityVersion: 4,
 	},

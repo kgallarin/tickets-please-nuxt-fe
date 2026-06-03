@@ -1,12 +1,12 @@
-import BaseTicket from '@/components/BaseTicket.vue';
-import type { Ticket } from '@appTypes/Ticket';
+import TicketCard from '@components/tickets/TicketCard.vue';
 import { renderSuspended } from '@nuxt/test-utils/runtime';
 import '@testing-library/jest-dom';
 import { type RenderResult } from '@testing-library/vue';
 import { describe, expect, test } from 'vitest';
+import type { Ticket } from '~~/types/Ticket';
 
 const renderBaseTicket = async (props: { ticket: Ticket }): Promise<RenderResult> => {
-	return renderSuspended(BaseTicket, {
+	return renderSuspended(TicketCard, {
 		global: {},
 		props,
 	});

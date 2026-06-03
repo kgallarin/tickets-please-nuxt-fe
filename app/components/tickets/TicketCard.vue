@@ -11,16 +11,16 @@
 		<div class="ticket-inner flex h-full flex-col px-11 py-5">
 			<div class="flex w-full flex-col items-center justify-between">
 				<h1 class="text-xl">
-					{{ ticket?.attributes.title }}
+					{{ ticket?.title }}
 				</h1>
 
 				<h3>
-					{{ ticket?.attributes.status }}
+					{{ ticket?.status }}
 				</h3>
 			</div>
 
 			<div class="mt-auto text-right">
-				<span class="text-sm">{{ ticket.relationships.author.data.name }}</span>
+				<span class="text-sm">{{ ticket.author.name }}</span>
 			</div>
 		</div>
 	</div>
