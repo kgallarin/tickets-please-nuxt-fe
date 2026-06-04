@@ -1,6 +1,6 @@
 import { createError, navigateTo, useCookie } from '#imports';
-import type { ApiError } from '@appTypes/Api';
 import { type $Fetch, $fetch, type FetchOptions } from 'ofetch';
+import type { ApiError } from '~~/types/Api';
 
 const baseURLV1 = 'api/v1';
 export function createApiFetch(overrides: FetchOptions = {}): $Fetch {

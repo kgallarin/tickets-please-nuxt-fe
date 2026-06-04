@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import type { Ticket } from '@appTypes/Ticket';
+	import type { Ticket } from '~~/types/Ticket';
 	defineProps<{ ticket?: Ticket }>();
 </script>
 
