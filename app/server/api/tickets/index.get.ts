@@ -8,10 +8,7 @@ export default defineEventHandler(async (event): Promise<PaginatedApiResponse<Ti
 	const config = useRuntimeConfig();
 	const query = getQuery(event);
 
-	return fetch<PaginatedApiResponse<Ticket>>(
-		`${config.public.API_BASE_URL}/${config.public.API_VERSION}/tickets?${query}`,
-		{
-			query,
-		},
-	);
+	return fetch<PaginatedApiResponse<Ticket>>(`${config.public.API_BASE_URL}/${config.public.API_VERSION}/tickets?`, {
+		query,
+	});
 });
