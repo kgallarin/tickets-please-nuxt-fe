@@ -23,7 +23,7 @@
 <template>
 	<nav class="flex items-center justify-between border-b border-gray-100 p-4 px-8">
 		<div>
-			<NuxtLink to="/public" class="font-linowrite">Tickets</NuxtLink>
+			<NuxtLink to="/" class="font-linowrite">Tickets</NuxtLink>
 		</div>
 		<div class="mr-5">
 			<ClientOnly>

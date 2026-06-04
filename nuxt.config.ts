@@ -23,6 +23,18 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 	],
 	devtools: { enabled: true },
+	runtimeConfig: {
+		public: {
+			API_BASE_URL: process.env.PUBLIC_API_BASE_URL,
+			API_VERSION: process.env.PUBLIC_API_VERSION,
+		},
+	},
+	components: [
+		{
+			path: '~/components',
+			pathPrefix: false,
+		},
+	],
 	imports: {
 		dirs: ['composables/**'],
 	},
@@ -38,7 +50,6 @@ export default defineNuxtConfig({
 	alias: {
 		'@components': fileURLToPath(new URL('./app/components', import.meta.url)),
 		'@pages': fileURLToPath(new URL('./app/pages', import.meta.url)),
-		'@appTypes': fileURLToPath(new URL('./types', import.meta.url)),
 		'@utils': fileURLToPath(new URL('./utils', import.meta.url)),
 	},
 });

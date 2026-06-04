@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<base-user-item />
+	<user-row />
 </template>
 
 <style scoped></style>
