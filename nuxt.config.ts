@@ -25,8 +25,8 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	runtimeConfig: {
 		public: {
-			API_BASE_URL: '',
-			API_VERSION: '',
+			API_BASE_URL: process.env.PUBLIC_API_BASE_URL,
+			API_VERSION: process.env.PUBLIC_API_VERSION,
 		},
 	},
 	components: [
