@@ -7,14 +7,14 @@ const ticketURL = '/tickets';
 
 export const ticketService = {
 	// mutations only here
-	async create(payload: any, $fetch: ApiFetch) {
+	async create<T>(payload: Record<string, T>, $fetch: ApiFetch) {
 		return $fetch(ticketURL, {
 			method: 'POST',
 			body: payload,
 		});
 	},
 
-	async update(id: string, payload: any, $fetch: ApiFetch) {
+	async update<T>(id: string, payload: Record<string, T>, $fetch: ApiFetch) {
 		return $fetch(`${ticketURL}/${id}`, {
 			method: 'PUT',
 			body: payload,

@@ -11,8 +11,6 @@ export function createServerFetch(event: H3Event) {
 
 		onRequest({ options }) {
 			if (token) {
-				console.log(token, 'token');
-				console.log(1234);
 				const headers = new Headers(options.headers as HeadersInit);
 				headers.set('Authorization', `Bearer ${token}`);
 
