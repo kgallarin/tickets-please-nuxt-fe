@@ -3,6 +3,7 @@
 		title: 'Home',
 		description: 'Browse tickets',
 	});
+	definePageMeta({ middleware: 'auth' });
 
 	const { items } = useTickets();
 </script>

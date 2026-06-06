@@ -5,6 +5,10 @@
 		ogSiteName: 'Tickets Please',
 		robots: 'index, follow',
 	});
+
+	const { fetchCurrentUser } = useAuth();
+
+	await fetchCurrentUser();
 </script>
 
 <template>

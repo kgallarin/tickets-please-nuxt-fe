@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	definePageMeta({
 		layout: 'blank',
+		middleware: 'guest',
 	});
 
 	useSeoMeta({
@@ -8,21 +9,30 @@
 		description: 'Login to your account',
 	});
 
-	const title = useState('title', () => 'Login');
+	const form = reactive({
+		email: '',
+		password: '',
+	});
+
+	const { login, loginLoading, error } = useAuth();
+	async function handleSubmit() {
+		await login(form);
+	}
 </script>
 
 <template>
 	<div class="flex h-full w-full max-w-md">
-		<Title>{{ title }}</Title>
+		<form class="flex w-full flex-col gap-y-2.5" @submit.prevent="handleSubmit">
+			<div class="font-linowrite mb-8 flex flex-col gap-4 text-center text-xl capitalize">
+				<p>Welcome!</p>
+				<p class="font-inter text-sm text-red-400">{{ error }}</p>
+			</div>
 
-		<div class="flex w-full flex-col gap-y-2.5">
-			<div class="font-linowrite mb-8 text-center text-xl capitalize">Welcome back!</div>
+			<base-input v-model="form.email" label="Email" type="email" />
+			<base-input v-model="form.password" label="Password" type="password" />
 
-			<base-input label="Email" type="email" />
-			<base-input label="Password" type="password" />
-
-			<base-button class="mt-8" label="login" />
-		</div>
+			<base-button class="mt-8" type="submit" label="login" :loading="loginLoading" />
+			<NuxtLink to="/" class="mx-auto mt-8 max-w-fit text-sm text-blue-500"> go back </NuxtLink>
+		</form>
 	</div>
 </template>
-x

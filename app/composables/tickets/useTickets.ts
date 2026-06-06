@@ -9,7 +9,7 @@ export function useTickets<T>(filters?: Ref<T>) {
 		items: rawItems,
 		loading,
 		error,
-	} = useApiFetchList<RawApiTicket>(`${config.public.API_BASE_URL}/${config.public.API_VERSION}/tickets`, {
+	} = useApiFetchList<RawApiTicket>(`${config.public.API_BASE_URL}/tickets`, {
 		params: filters,
 	});
 

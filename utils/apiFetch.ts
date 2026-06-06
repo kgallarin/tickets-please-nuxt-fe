@@ -2,14 +2,14 @@ import { createError, navigateTo, useCookie } from '#imports';
 import { type $Fetch, $fetch, type FetchOptions } from 'ofetch';
 import type { ApiError } from '~~/types/Api';
 
-const baseURLV1 = 'api/v1';
 export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
+	const config = useRuntimeConfig();
+	const token = useCookie('access_token');
 	return $fetch.create({
-		baseURL: baseURLV1,
+		baseURL: '/api',
 		timeout: 15_000,
 
 		onRequest({ options }) {
-			const token = useCookie('access_token');
 			const headers = new Headers(options.headers as HeadersInit);
 
 			if (token.value) {

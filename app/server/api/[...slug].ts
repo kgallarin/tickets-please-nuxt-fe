@@ -1,4 +1,6 @@
-export default defineEventHandler(async (event) => {
+import { type H3Event } from 'h3';
+
+export default defineEventHandler(async (event: H3Event) => {
 	const config = useRuntimeConfig();
 	// const path = event.path.replace('/api/', '');
 	const target = `${config.public.API_BASE_URL}/${event.path}`;
