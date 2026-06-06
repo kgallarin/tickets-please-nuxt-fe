@@ -7,8 +7,6 @@ export function useAuth() {
 	const { $apiFetch } = useNuxtApp();
 	const store = useAuthStore();
 
-	const token = useCookie('access_token');
-
 	const error = ref<string | null>(null);
 
 	async function login(payload: LoginPayload): Promise<void> {
@@ -17,8 +15,7 @@ export function useAuth() {
 		store.setLoading({ type: 'login', flag: true });
 		try {
 			const res = await authService.login(payload, $apiFetch);
-			token.value = res.data.token;
-			store.setSession(res.data.user, res.data.token);
+			store.setSession(res.data.user);
 
 			await navigateTo('/');
 		} catch (e) {
@@ -36,7 +33,6 @@ export function useAuth() {
 		try {
 			await authService.logout($apiFetch);
 		} finally {
-			token.value = null;
 			store.clearSession();
 
 			await navigateTo('/auth/login');
@@ -46,11 +42,9 @@ export function useAuth() {
 	}
 
 	async function fetchCurrentUser(): Promise<void> {
-		if (!token.value) return;
-
 		try {
 			const res = await authService.fetchCurrentUser($apiFetch);
-			store.setSession(res.data, token.value);
+			store.setSession(res.data);
 		} catch {
 			store.clearSession();
 		}

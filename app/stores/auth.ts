@@ -3,7 +3,6 @@ import type { User } from '~~/types/User';
 
 export interface AuthState {
 	user: User | null;
-	token: string | null;
 	loading: {
 		global: boolean;
 		login: boolean;
@@ -14,7 +13,6 @@ export interface AuthState {
 export const useAuthStore = defineStore('auth', {
 	state: (): AuthState => ({
 		user: null,
-		token: null,
 		loading: {
 			global: false,
 			login: false,
@@ -23,19 +21,17 @@ export const useAuthStore = defineStore('auth', {
 	}),
 
 	getters: {
-		isAuthenticated: (state: AuthState): boolean => !!state.token,
+		isAuthenticated: (state: AuthState): boolean => !!state.user,
 		isAdmin: (state: AuthState): boolean => !!state.user?.isAdmin,
 	},
 
 	actions: {
-		setSession(user: User, token: string): void {
+		setSession(user: User): void {
 			this.user = user;
-			this.token = token;
 		},
 
 		clearSession(): void {
 			this.user = null;
-			this.token = null;
 		},
 	},
 });
