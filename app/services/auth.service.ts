@@ -7,18 +7,18 @@ type ApiFetch = $Fetch;
 
 export const authService = {
 	async login(payload: LoginPayload, $fetch: ApiFetch): Promise<AuthResponse> {
-		return $fetch('/auth/login', { method: 'POST', body: payload }); // <- /auth/* since we made the route: auth/ (folder)
+		return $fetch('auth/login', { method: 'POST', body: payload });
 	},
 
 	async logout($fetch: ApiFetch): Promise<void> {
-		return $fetch('/auth/logout', { method: 'POST' });
+		return $fetch('auth/logout', { method: 'POST' });
 	},
 
 	async fetchCurrentUser($fetch: ApiFetch): Promise<ApiResponse<User>> {
-		return $fetch(`/auth/me`);
+		return $fetch('v1/me');
 	},
 
 	async refreshToken(token: string, $fetch: ApiFetch): Promise<{ token: string }> {
-		return $fetch('/auth/refresh', { method: 'POST', body: { token } });
+		return $fetch('auth/refresh', { method: 'POST', body: { token } });
 	},
 };

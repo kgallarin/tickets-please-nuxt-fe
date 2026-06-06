@@ -1,4 +1,3 @@
-import { useCookie } from '#imports';
 import { defineStore } from 'pinia';
 import type { User } from '~~/types/User';
 

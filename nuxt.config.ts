@@ -25,8 +25,8 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	runtimeConfig: {
 		API_SECRET: process.env.NUXT_API_SECRET,
+		API_BASE_URL: process.env.NUXT_API_BASE_URL,
 		public: {
-			API_BASE_URL: process.env.PUBLIC_API_BASE_URL,
 			APP_URL: process.env.NUXT_PUBLIC_APP_URL,
 		},
 	},

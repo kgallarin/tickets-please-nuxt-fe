@@ -21,7 +21,7 @@
 </script>
 
 <template>
-	<div class="flex h-full w-full max-w-md">
+	<div class="mx-auto flex h-screen w-full max-w-md items-center">
 		<form class="flex w-full flex-col gap-y-2.5" @submit.prevent="handleSubmit">
 			<div class="font-linowrite mb-8 flex flex-col gap-4 text-center text-xl capitalize">
 				<p>Welcome!</p>

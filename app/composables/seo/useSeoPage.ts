@@ -21,7 +21,7 @@ export function useSeoPage(options: SeoPageOptions) {
 		link: [
 			{
 				rel: 'canonical',
-				href: computed((): string => `${config.public.NUXT_PUBLIC_APP_URL}${route.path}`),
+				href: computed((): string => `${config.public.APP_URL}${route.path}`),
 			},
 		],
 	});

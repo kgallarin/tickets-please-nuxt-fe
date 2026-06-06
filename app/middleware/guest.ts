@@ -1,7 +1,9 @@
 import { useCookie } from '#imports';
 
 export default defineNuxtRouteMiddleware(() => {
-	const token = useCookie('access_token');
+	const isAuthenticated = import.meta.server
+		? !!useCookie('access_token').value
+		: useAuthStore().isAuthenticated;
 
-	if (token.value) return navigateTo('/');
+	if (isAuthenticated) return navigateTo('/');
 });

@@ -1,21 +1,32 @@
-import { createError, navigateTo, useCookie } from '#imports';
-import { type $Fetch, $fetch, type FetchOptions } from 'ofetch';
+import { createError, navigateTo, useCookie, useRequestHeaders } from '#imports';
+import { type $Fetch, $fetch, type FetchContext, type FetchOptions, type ResponseType } from 'ofetch';
 import type { ApiError } from '~~/types/Api';
 
 export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 	const config = useRuntimeConfig();
 	const token = useCookie('access_token');
+
+	// Captured during plugin setup (Nuxt context is active here).
+	// Forwarded on server-side calls so Nitro's proxyFetch can read the
+	// httpOnly access_token cookie and attach the Authorization header.
+	const ssrHeaders = import.meta.server ? useRequestHeaders(['cookie']) : {};
+
 	return $fetch.create({
-		baseURL: '/api',
+		baseURL: import.meta.server ? `${config.public.APP_URL}/api` : '/api',
 		timeout: 15_000,
 
-		onRequest({ options }) {
+		onRequest<T>({ options }: FetchContext<T, ResponseType>): void {
 			const headers = new Headers(options.headers as HeadersInit);
 
 			if (token.value) {
 				headers.set('Authorization', `Bearer ${token.value}`);
-				options.headers = headers;
 			}
+
+			if (import.meta.server && ssrHeaders.cookie) {
+				headers.set('cookie', ssrHeaders.cookie);
+			}
+
+			options.headers = headers;
 		},
 
 		// errors
@@ -26,7 +37,7 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 				case 401:
 					// token expired, redirect to login
 					useCookie('access_token').value = null;
-					navigateTo('/login');
+					navigateTo('auth/login');
 					break;
 
 				case 403:
