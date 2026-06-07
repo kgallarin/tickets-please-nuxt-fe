@@ -32,7 +32,6 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 				case 401:
 					// Redirect to login only on the client — navigateTo during SSR
 					// would hijack the server response and cause redirect loops.
-					console.log('PUTANG INA');
 					if (import.meta.client) {
 						navigateTo('/auth/login');
 					}
