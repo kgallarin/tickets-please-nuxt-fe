@@ -1,6 +1,6 @@
 import { createApiFetch } from '@utils/apiFetch';
-import type { $Fetch } from 'ofetch';
 import { defineNuxtPlugin } from 'nuxt/app';
+import type { $Fetch } from 'ofetch';
 
 declare module '#app' {
 	interface NuxtApp {

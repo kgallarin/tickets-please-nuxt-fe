@@ -15,6 +15,10 @@ export interface PaginatedApiResponse<T = unknown> {
 }
 
 export interface ApiError {
+	data: {
+		status: number;
+		message: string;
+	};
 	status: number;
 	message: string;
 	errors?: Record<string, string[]>;
