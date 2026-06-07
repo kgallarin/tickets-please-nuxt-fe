@@ -30,8 +30,12 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 
 			switch (response.status) {
 				case 401:
-					// token expired, redirect to login
-					navigateTo('/auth/login');
+					// Redirect to login only on the client — navigateTo during SSR
+					// would hijack the server response and cause redirect loops.
+					console.log('PUTANG INA');
+					if (import.meta.client) {
+						navigateTo('/auth/login');
+					}
 					break;
 
 				case 403:
