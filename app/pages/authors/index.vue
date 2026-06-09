@@ -5,12 +5,14 @@
 	});
 
 	definePageMeta({
-		middleware: 'guest',
+		middleware: 'auth',
 	});
+
+	const { items } = useUsers();
 </script>
 
 <template>
-	<user-row />
+	<user-row v-for="item in items" :key="item.id" />
 </template>
 
 <style scoped></style>
