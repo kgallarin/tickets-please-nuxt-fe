@@ -6,6 +6,7 @@ export interface RawApiTicket {
 	attributes: {
 		title: string;
 		status: string;
+		description: string;
 		created_at: string;
 		updated_at: string;
 	};
@@ -20,7 +21,16 @@ export interface Ticket {
 	id: string;
 	title: string;
 	status: string;
+	description: string;
 	created_at: string;
 	updated_at: string;
 	author: User;
+}
+
+export interface UpdateTicketPayload {
+	attributes: {
+		title: string;
+		description: string;
+		status: string;
+	};
 }

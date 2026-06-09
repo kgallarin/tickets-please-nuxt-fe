@@ -16,7 +16,7 @@
 
 <template>
 	<div class="flex flex-col gap-y-1.5">
-		<label :for="($attrs.id as string) || label" class="font-roboto block w-full text-sm font-medium">
+		<label :for="($attrs.id as string) || label" class="font-roboto block w-full text-sm font-medium capitalize">
 			{{ label }}
 		</label>
 		<textarea
@@ -25,8 +25,9 @@
 			v-model="model"
 			v-bind="$attrs"
 			minlength="10"
-			cols="30"
-			rows="10"
+			cols="15"
+			rows="5"
+			class="rounded-md border p-4"
 			:class="error ? 'border-red-500' : 'border-gray-300'"
 		/>
 		<input

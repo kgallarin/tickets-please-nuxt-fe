@@ -16,6 +16,7 @@ const defaultTicketProp: Ticket = {
 	id: '1',
 	title: 'Sample Ticket',
 	status: 'Open',
+	description: 'I am ticket',
 	created_at: '2023-01-01T00:00:00Z',
 	updated_at: '2023-01-01T00:00:00Z',
 	author: {
