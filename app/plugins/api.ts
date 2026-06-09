@@ -8,7 +8,7 @@ declare module '#app' {
 	}
 }
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((): { provide: { apiFetch: $Fetch } } => {
 	const apiFetch = createApiFetch();
 
 	return {
