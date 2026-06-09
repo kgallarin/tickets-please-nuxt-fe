@@ -28,8 +28,8 @@
 				<p class="font-inter text-sm text-red-400">{{ error }}</p>
 			</div>
 
-			<base-input v-model="form.email" label="Email" type="email" />
-			<base-input v-model="form.password" label="Password" type="password" />
+			<base-input v-model="form.email" label="email" type="email" />
+			<base-input v-model="form.password" label="password" type="password" />
 
 			<base-button class="mt-8" type="submit" label="login" :loading="loginLoading" />
 			<NuxtLink to="/" class="mx-auto mt-8 max-w-fit text-sm text-blue-500"> go back </NuxtLink>
