@@ -1,4 +1,9 @@
 <script setup lang="ts">
+	useSeoPage({
+		title: 'Authors',
+		description: 'List of authors',
+	});
+
 	definePageMeta({
 		middleware: 'guest',
 	});
