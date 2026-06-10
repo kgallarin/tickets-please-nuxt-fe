@@ -5,7 +5,16 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
-	css: ['~/assets/css/app.css'],
+	css: ['~/assets/css/app.css', '@fortawesome/fontawesome-svg-core/styles.css'],
+	build: {
+		transpile: [
+			'@fortawesome/vue-fontawesome',
+			'@fortawesome/fontawesome-svg-core',
+			'@fortawesome/free-solid-svg-icons',
+			'@fortawesome/free-regular-svg-icons',
+			'@fortawesome/free-brands-svg-icons',
+		],
+	},
 	modules: [
 		[
 			'@nuxtjs/google-fonts',
@@ -20,6 +29,7 @@ export default defineNuxtConfig({
 				download: false,
 			},
 		],
+
 		'@pinia/nuxt',
 	],
 	devtools: { enabled: true },

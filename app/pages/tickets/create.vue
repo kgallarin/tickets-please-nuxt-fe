@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	const { create } = useTicket();
+	const { create } = useTickets();
 	const { user: authUser } = useAuthUser();
 	const form = reactive({
 		attributes: {

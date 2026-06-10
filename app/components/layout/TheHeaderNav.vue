@@ -6,6 +6,10 @@
 			href: '/',
 		},
 		{
+			label: 'Tickets',
+			href: '/tickets',
+		},
+		{
 			label: 'Authors',
 			href: '/authors',
 		},
