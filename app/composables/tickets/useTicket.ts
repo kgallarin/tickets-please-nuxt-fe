@@ -1,25 +1,39 @@
 import { type Ref } from 'vue';
 
 import { ticketService } from '~/services';
-import type { RawApiTicket, Ticket, UpdateTicketPayload } from '~~/types/Ticket';
+import type { RawApiTicket, Ticket, TicketPayload } from '~~/types/Ticket';
 
-export function useTicket(id: string | Ref<string>) {
+export function useTicket() {
 	const { $apiFetch } = useNuxtApp();
 
-	const { data: ticket, loading, error } = useApiFetchSingle<RawApiTicket>(`v1/tickets/${unref(id)}`);
+	function fetchUser(id: string | Ref<string>) {
+		const { data, loading, error, refresh } = useApiFetchSingle<RawApiTicket>(`v1/tickets/${unref(id)}`);
 
-	async function update(payload: UpdateTicketPayload): Promise<Ticket> {
+		return {
+			data,
+			loading,
+			error,
+			refresh,
+		};
+	}
+
+	async function create(payload: TicketPayload): Promise<Ticket> {
+		const res = await ticketService.create(payload, $apiFetch);
+
+		return res.data;
+	}
+	async function update(id: string | Ref<string>, payload: TicketPayload): Promise<Ticket> {
 		const res = await ticketService.update(unref(id), payload, $apiFetch);
 
 		return res.data;
 	}
 
-	async function edit(payload: UpdateTicketPayload): Promise<Ticket> {
+	async function edit(id: string | Ref<string>, payload: TicketPayload): Promise<Ticket> {
 		const res = await ticketService.edit(unref(id), payload, $apiFetch);
 
 		return res.data;
 	}
 	// cons
 
-	return { ticket, update, edit, loading, error };
+	return { fetchUser, create, update, edit };
 }
