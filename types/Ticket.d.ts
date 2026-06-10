@@ -27,7 +27,7 @@ export interface Ticket {
 	author: User;
 }
 
-export interface UpdateTicketPayload {
+export interface TicketPayload {
 	attributes: {
 		title: string;
 		description: string;

@@ -1,5 +1,5 @@
 import { type $Fetch } from 'ofetch';
-import type { RawApiTicket, Ticket, UpdateTicketPayload } from '~~/types/Ticket';
+import type { RawApiTicket, Ticket, TicketPayload } from '~~/types/Ticket';
 import type { User } from '~~/types/User';
 
 type ApiFetch = $Fetch;
@@ -7,14 +7,18 @@ const ticketURL = 'v1/tickets';
 
 export const ticketService = {
 	// mutations only here
-	async create<T>(payload: Record<string, T>, $fetch: ApiFetch) {
+	async create(payload: TicketPayload, $fetch: ApiFetch) {
 		return $fetch(ticketURL, {
 			method: 'POST',
-			body: payload,
+			body: {
+				data: {
+					...payload,
+				},
+			},
 		});
 	},
 
-	async edit(id: string, payload: UpdateTicketPayload, $fetch: ApiFetch) {
+	async edit(id: string, payload: TicketPayload, $fetch: ApiFetch) {
 		return $fetch(`${ticketURL}/${id}`, {
 			method: 'PATCH',
 			body: {
@@ -25,7 +29,7 @@ export const ticketService = {
 		});
 	},
 
-	async update(id: string, payload: UpdateTicketPayload, $fetch: ApiFetch) {
+	async update(id: string, payload: TicketPayload, $fetch: ApiFetch) {
 		return $fetch(`${ticketURL}/${id}`, {
 			method: 'PUT',
 			body: payload,

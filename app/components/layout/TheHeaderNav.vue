@@ -9,6 +9,10 @@
 			label: 'Authors',
 			href: '/authors',
 		},
+		{
+			label: 'Create Ticket',
+			href: '/tickets/create',
+		},
 	];
 
 	const { logout } = useAuth();

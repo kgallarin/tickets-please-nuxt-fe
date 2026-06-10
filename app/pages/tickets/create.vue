@@ -1,32 +1,23 @@
 <script setup lang="ts">
-	import { computed } from 'vue';
-	import { ticketService } from '~/services';
-
-	const route = useRoute();
-
-	const ticketParamId = computed(() => route.params.id as string);
-	const { fetchUser, edit } = useTicket();
-	const { data: ticket } = fetchUser(ticketParamId);
-
+	const { create } = useTicket();
+	const { user: authUser } = useAuthUser();
 	const form = reactive({
 		attributes: {
 			title: '',
 			description: '',
 			status: '',
 		},
+		relationships: {
+			user: {
+				data: {
+					id: authUser.value?.id,
+				},
+			},
+		},
 	});
 
-	watch(
-		ticket,
-		(newVal) => {
-			if (newVal) {
-				Object.assign(form.attributes, ticketService.normalizeTicketData(newVal));
-			}
-		},
-		{ immediate: true },
-	);
 	async function handleEditTicket() {
-		await edit(ticketParamId, form);
+		await create(form);
 	}
 </script>
 
@@ -37,7 +28,7 @@
 			<base-input v-model="form.attributes.description" type="textarea" />
 			<base-input v-model="form.attributes.status" label="status" type="text" />
 
-			<base-button type="submit" label="edit" />
+			<base-button type="submit" label="create" />
 		</form>
 	</div>
 </template>
