@@ -4,9 +4,7 @@
 		description: 'Browse tickets',
 	});
 
-	definePageMeta({ middleware: 'auth' });
-
-	const { items } = useTickets();
+	definePageMeta({ middleware: 'guest' });
 </script>
 
 <template>

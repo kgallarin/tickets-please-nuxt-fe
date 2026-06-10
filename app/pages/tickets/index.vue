@@ -9,10 +9,7 @@
 
 	const { items, destroy } = useTickets();
 
-	async function handleDeleteTicket(id: string) {
-		// const { destroy } = useTicket(id);
-		await destroy(id);
-	}
+	const handleDeleteTicket = async (id: string) => await destroy(id);
 	async function handleEditTicket(id: string) {
 		await router.push(`/tickets/${id}/edit`);
 	}
