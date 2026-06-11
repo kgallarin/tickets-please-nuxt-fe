@@ -29,10 +29,10 @@
 	>
 		<div
 			v-if="showDelete"
-			class="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500"
+			class="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-2"
 			@click.prevent.stop="handleEmitDelete"
 		>
-			<icon :icon="['fas', 'close']" class="text-white" />
+			<icon :icon="['fas', 'close']" class="text-xs text-white" />
 		</div>
 		<div class="ticket-inner flex h-full flex-col px-11 py-5">
 			<div class="flex w-full flex-col items-center justify-between">

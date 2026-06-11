@@ -30,7 +30,8 @@
 </script>
 
 <template>
-	<div class="edit-ticket">
+	<div class="edit-ticket mx-auto max-w-md">
+		<h1 class="py-8 text-center">Edit Ticket</h1>
 		<form class="flex flex-col gap-8" @submit.prevent="handleEditTicket">
 			<base-input v-model="form.attributes.title" label="title" type="text" />
 			<base-input v-model="form.attributes.description" type="textarea" />

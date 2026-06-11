@@ -1,21 +1,36 @@
 import type { $Fetch } from 'ofetch';
-import type { RawApiUser, User } from '~~/types/User';
+import type { RawApiUser, User, UserPayload } from '~~/types/User';
 
 type ApiFetch = $Fetch;
-const userURL = '/users';
+const userURL = 'v1/users';
 
 export const userService = {
-	async create<T>(payload: Record<string, T>, $fetch: ApiFetch) {
+	async create(payload: UserPayload, $fetch: ApiFetch) {
 		return $fetch(userURL, {
 			method: 'POST',
+			body: {
+				data: {
+					...payload,
+				},
+			},
+		});
+	},
+
+	async update(id: string, payload: UserPayload, $fetch: ApiFetch) {
+		return $fetch(`${userURL}/${id}`, {
+			method: 'PUT',
 			body: payload,
 		});
 	},
 
-	async update<T>(id: string, payload: Record<string, T>, $fetch: ApiFetch) {
+	async edit(id: string, payload: UserPayload, $fetch: ApiFetch) {
 		return $fetch(`${userURL}/${id}`, {
-			method: 'PUT',
-			body: payload,
+			method: 'PATCH',
+			body: {
+				data: {
+					...payload,
+				},
+			},
 		});
 	},
 

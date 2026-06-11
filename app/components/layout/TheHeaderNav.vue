@@ -16,13 +16,18 @@
 			auth: isAuthenticated.value,
 		},
 		{
-			label: 'authors',
-			href: '/authors',
+			label: 'create ticket',
+			href: '/tickets/create',
 			auth: isAuthenticated.value,
 		},
 		{
-			label: 'create ticket',
-			href: '/tickets/create',
+			label: 'users',
+			href: '/users',
+			auth: isAuthenticated.value,
+		},
+		{
+			label: 'create user',
+			href: '/users/create',
 			auth: isAuthenticated.value,
 		},
 		{
@@ -30,7 +35,6 @@
 			href: '/auth/login',
 			auth: !isAuthenticated.value,
 		},
-
 		{
 			label: 'logout',
 			href: null,
