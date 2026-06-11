@@ -19,7 +19,7 @@ const renderBaseHeaderNav = async (): Promise<RenderResult> => {
 };
 describe('BaseHeaderNav', (): void => {
 	test('renders home link', async (): Promise<void> => {
-		const { getByText, debug } = await renderBaseHeaderNav();
+		const { getByText } = await renderBaseHeaderNav();
 		expect(getByText('Home')).toBeInTheDocument();
 	});
 });
