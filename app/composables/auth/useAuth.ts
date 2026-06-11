@@ -35,9 +35,8 @@ export function useAuth() {
 		} finally {
 			store.clearSession();
 
-			await navigateTo('/auth/login');
-
 			store.setLoading({ type: 'logout', flag: false });
+			navigateTo('/auth/login');
 		}
 	}
 

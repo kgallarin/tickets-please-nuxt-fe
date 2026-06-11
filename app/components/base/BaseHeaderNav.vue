@@ -10,6 +10,7 @@
 				{
 					label: 'Home',
 					href: '/',
+					auth: false,
 				},
 			],
 		},
@@ -22,7 +23,7 @@
 	<ClientOnly>
 		<ul class="flex space-x-4">
 			<li v-for="link in navLinks" :key="link.href" class="font-roboto text-sm">
-				<NuxtLink :to="link.href" class="hover:underline">{{ link.label }}</NuxtLink>
+				<NuxtLink v-if="link.auth" :to="link.href" class="hover:underline">{{ link.label }}</NuxtLink>
 			</li>
 			<slot v-if="slot.default" />
 		</ul>
