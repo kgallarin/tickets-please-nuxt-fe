@@ -34,10 +34,9 @@ export function useAuth() {
 			await authService.logout($apiFetch);
 		} finally {
 			store.clearSession();
-
 			store.setLoading({ type: 'logout', flag: false });
-			navigateTo('/auth/login');
 		}
+		await navigateTo('/auth/login', { replace: true });
 	}
 
 	async function fetchCurrentUser(): Promise<void> {

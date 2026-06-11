@@ -11,11 +11,6 @@
 			auth: true,
 		},
 		{
-			label: 'login',
-			href: '/auth/login',
-			auth: !isAuthenticated.value,
-		},
-		{
 			label: 'tickets',
 			href: '/tickets',
 			auth: isAuthenticated.value,
@@ -30,12 +25,34 @@
 			href: '/tickets/create',
 			auth: isAuthenticated.value,
 		},
+		{
+			label: 'login',
+			href: '/auth/login',
+			auth: !isAuthenticated.value,
+		},
+
+		{
+			label: 'logout',
+			href: null,
+			auth: isAuthenticated.value,
+		},
 	]);
 
 	const { logout } = useAuth();
 
 	async function handleLogout() {
 		await logout();
+	}
+
+	function handleHeaderNavEmit(itemLabel: string) {
+		switch (itemLabel) {
+			case 'logout':
+				handleLogout();
+				break;
+
+			default:
+				return;
+		}
 	}
 </script>
 
@@ -46,13 +63,7 @@
 		</div>
 
 		<div class="mr-5">
-			<base-header-nav :nav-links="navLinks">
-				<li v-if="isAuthenticated" class="font-roboto m-0 text-sm">
-					<a href="#" @click="handleLogout"> Logout </a>
-				</li>
-			</base-header-nav>
+			<base-header-nav :nav-links="navLinks" @nav-on-click="handleHeaderNavEmit" />
 		</div>
 	</nav>
 </template>
-
-<style scoped></style>

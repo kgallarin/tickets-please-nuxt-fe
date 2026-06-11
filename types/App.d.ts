@@ -1,1 +1,1 @@
-export type NavLink = { label: string; href: string; auth: boolean };
+export type NavLink = { label: string; href: string | null; auth: boolean };

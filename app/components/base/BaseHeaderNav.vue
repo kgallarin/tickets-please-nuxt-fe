@@ -1,7 +1,8 @@
 <script setup lang="ts">
 	import type { NavLink } from '~~/types/App';
+	import { computed } from 'vue';
 
-	withDefaults(
+	const props = withDefaults(
 		defineProps<{
 			navLinks?: NavLink[];
 		}>(),
@@ -16,16 +17,22 @@
 		},
 	);
 
-	const slot = useSlots();
+	const filteredNavLinks = computed(() => {
+		return props.navLinks.filter((item) => item.auth);
+	});
+
+	const emit = defineEmits<{
+		navOnClick: [itemLabel: string];
+	}>();
 </script>
 
 <template>
 	<ClientOnly>
-		<ul class="flex space-x-4">
-			<li v-for="link in navLinks" :key="link.href" class="font-roboto text-sm">
-				<NuxtLink v-if="link.auth" :to="link.href" class="hover:underline">{{ link.label }}</NuxtLink>
-			</li>
-			<slot v-if="slot.default" />
-		</ul>
+		<nav class="flex space-x-8">
+			<div v-for="link in filteredNavLinks" :key="link.label" class="font-roboto text-sm">
+				<NuxtLink v-if="link.href" :to="link.href" class="hover:underline">{{ link.label }}</NuxtLink>
+				<a v-else href="#" @click.prevent.stop="emit('navOnClick', link.label)">{{ link.label }}</a>
+			</div>
+		</nav>
 	</ClientOnly>
 </template>
