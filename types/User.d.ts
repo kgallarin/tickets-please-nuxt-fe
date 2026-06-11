@@ -16,3 +16,12 @@ export interface RawApiUser {
 		self: string;
 	};
 }
+
+export interface UserPayload {
+	attributes: {
+		name: string;
+		email: string;
+		password?: string;
+		isAdmin: boolean;
+	};
+}

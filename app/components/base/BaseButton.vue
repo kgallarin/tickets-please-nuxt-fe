@@ -1,4 +1,11 @@
 <script setup lang="ts">
+	import { computed, useAttrs } from 'vue';
+
+	const attrs = useAttrs();
+	const defaultStyles = 'cursor-pointer rounded-md bg-gray-400 px-4 py-2 text-sm text-white hover:bg-gray-500';
+
+	const buttonStyles = computed(() => cn(defaultStyles, attrs.class));
+
 	withDefaults(
 		defineProps<{
 			label?: string;
@@ -14,11 +21,7 @@
 </script>
 
 <template>
-	<button
-		:type="type"
-		class="cursor-pointer rounded-md bg-gray-300 px-4 py-2 text-sm text-white hover:bg-gray-400"
-		:disabled="loading"
-	>
+	<button :type="type" :class="buttonStyles" :disabled="loading">
 		{{ loading ? 'loading' : label }}
 	</button>
 </template>
