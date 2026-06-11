@@ -19,8 +19,6 @@
 	async function handleEditTicket() {
 		try {
 			await create(form);
-		} catch (e) {
-			console.log(e);
 		} finally {
 			navigateTo('/users');
 		}
