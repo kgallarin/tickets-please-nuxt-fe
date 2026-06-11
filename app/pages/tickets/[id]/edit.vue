@@ -5,8 +5,7 @@
 	const route = useRoute();
 
 	const ticketParamId = computed(() => route.params.id as string);
-	const { fetchUser, edit } = useTicket();
-	const { data: ticket } = fetchUser(ticketParamId);
+	const { ticket, edit } = useTicket(ticketParamId);
 
 	const form = reactive({
 		attributes: {
@@ -26,7 +25,7 @@
 		{ immediate: true },
 	);
 	async function handleEditTicket() {
-		await edit(ticketParamId, form);
+		await edit(form);
 	}
 </script>
 

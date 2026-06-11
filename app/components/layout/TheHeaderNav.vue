@@ -1,19 +1,36 @@
 <script setup lang="ts">
 	import type { NavLink } from '~~/types/App';
-	const navLinks: NavLink[] = [
+	import { computed } from 'vue';
+
+	const { isAuthenticated } = useAuthUser();
+
+	const navLinks: ComputedRef<NavLink[]> = computed(() => [
 		{
-			label: 'Home',
+			label: 'home',
 			href: '/',
+			auth: true,
 		},
 		{
-			label: 'Authors',
+			label: 'login',
+			href: '/auth/login',
+			auth: !isAuthenticated.value,
+		},
+		{
+			label: 'tickets',
+			href: '/tickets',
+			auth: isAuthenticated.value,
+		},
+		{
+			label: 'authors',
 			href: '/authors',
+			auth: isAuthenticated.value,
 		},
 		{
-			label: 'Create Ticket',
+			label: 'create ticket',
 			href: '/tickets/create',
+			auth: isAuthenticated.value,
 		},
-	];
+	]);
 
 	const { logout } = useAuth();
 
@@ -30,7 +47,7 @@
 
 		<div class="mr-5">
 			<base-header-nav :nav-links="navLinks">
-				<li class="font-roboto m-0 text-sm">
+				<li v-if="isAuthenticated" class="font-roboto m-0 text-sm">
 					<a href="#" @click="handleLogout"> Logout </a>
 				</li>
 			</base-header-nav>
