@@ -44,12 +44,12 @@ export const userService = {
 		return user.isAdmin;
 	},
 
-	normalizeUserData(rawUser: RawApiUser): User {
+	normalizeUserData(rawUser: RawApiUser | null): User {
 		return {
-			id: rawUser.id.toString(),
-			name: rawUser.attributes.name,
-			email: rawUser.attributes.email,
-			isAdmin: rawUser.attributes.isAdmin,
+			id: rawUser?.id.toString() ?? '',
+			name: rawUser?.attributes.name ?? '',
+			email: rawUser?.attributes.email ?? '',
+			isAdmin: rawUser?.attributes.isAdmin ?? false,
 		};
 	},
 };

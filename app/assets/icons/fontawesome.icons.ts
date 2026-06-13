@@ -12,6 +12,7 @@ export {
 	faStar,
 	faSun,
 	faTimes,
+	faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Regular

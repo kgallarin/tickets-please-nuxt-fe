@@ -4,7 +4,7 @@ import type { RawApiUser, User, UserPayload } from '~~/types/User';
 export function useUser(id: string | Ref<string>) {
 	const { $apiFetch } = useNuxtApp();
 
-	const { data: user, loading, error, refresh } = useApiFetchSingle<RawApiUser>(`v1/users/${unref(id)}`);
+	const { data: user, loading, error, refresh } = useApiFetchSingle<RawApiUser>((): string => `v1/users/${unref(id)}`);
 
 	async function update(payload: UserPayload): Promise<User> {
 		const res = await userService.update(unref(id), payload, $apiFetch);

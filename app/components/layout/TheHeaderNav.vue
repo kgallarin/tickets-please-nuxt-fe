@@ -36,6 +36,11 @@
 			auth: !isAuthenticated.value,
 		},
 		{
+			label: 'authors',
+			href: '/authors',
+			auth: isAuthenticated.value,
+		},
+		{
 			label: 'logout',
 			href: null,
 			auth: isAuthenticated.value,
@@ -67,7 +72,7 @@
 		</div>
 
 		<div class="mr-5">
-			<base-header-nav :nav-links="navLinks" @nav-on-click="handleHeaderNavEmit" />
+			<base-nav-list :nav-links="navLinks" @nav-on-click="handleHeaderNavEmit" />
 		</div>
 	</nav>
 </template>

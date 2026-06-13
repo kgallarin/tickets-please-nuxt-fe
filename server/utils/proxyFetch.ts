@@ -7,17 +7,21 @@ import type { ApiError } from '~~/types/Api';
 export function createServerFetch(event: H3Event) {
 	// On the server, we CAN read httpOnly cookies — the browser cannot
 	const token = getCookie(event, 'access_token');
-	const config = useRuntimeConfig();
+	const config = useRuntimeConfig(event);
+
 	return $fetch.create({
-		baseURL: `${config.API_BASE_URL}/api`,
+		baseURL: `${config.apiBaseUrl}/api`,
 		timeout: 15_000,
+		headers: {
+			'x-internal-key': config.apiSecret, // protects public routes (unused)
+		},
 
 		onRequest<T>({ options }: FetchContext<T, ResponseType>): void {
+			const headers = new Headers(options.headers as HeadersInit);
 			if (token) {
-				const headers = new Headers(options.headers as HeadersInit);
 				headers.set('Authorization', `Bearer ${token}`);
-				options.headers = headers;
 			}
+			options.headers = headers;
 		},
 
 		onResponseError({ response }) {

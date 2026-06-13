@@ -10,7 +10,7 @@ export function useUsers<T>(filters?: Ref<T>) {
 		loading,
 		error,
 		refresh,
-	} = useApiFetchList<RawApiUser>('v1/users', {
+	} = useApiFetchList<RawApiUser>((): string => 'v1/users', {
 		params: filters,
 	});
 
