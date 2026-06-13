@@ -18,6 +18,11 @@
 		await edit(form);
 	}
 
+	const router = useRouter();
+	function handleGoBack() {
+		return router.back();
+	}
+
 	watch(
 		user,
 		(newVal) => {
@@ -31,7 +36,12 @@
 
 <template>
 	<div class="create-user mx-auto max-w-md">
-		<h1 class="py-8 text-center">Edit User</h1>
+		<div class="relative flex justify-center">
+			<a href="#" class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2" @click.prevent.stop="handleGoBack">
+				<icon :icon="['fas', 'arrow-left']" />
+			</a>
+			<h1 class="py-8 text-center text-lg">Edit User</h1>
+		</div>
 		<form class="flex flex-col gap-8" @submit.prevent="handleEditTicket">
 			<base-input v-model="form.attributes.name" label="name" type="text" />
 			<base-input v-model="form.attributes.email" label="email" type="text" />

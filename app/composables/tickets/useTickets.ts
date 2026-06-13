@@ -11,7 +11,7 @@ export function useTickets<T>(filters?: Ref<T>) {
 		loading,
 		error,
 		refresh,
-	} = useApiFetchList<RawApiTicket>('v1/tickets', {
+	} = useApiFetchList<RawApiTicket>((): string => 'v1/tickets', {
 		params: filters,
 	});
 

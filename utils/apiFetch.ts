@@ -11,7 +11,7 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 	const ssrHeaders = import.meta.server ? useRequestHeaders(['cookie']) : {};
 
 	return $fetch.create({
-		baseURL: import.meta.server ? `${config.public.APP_URL}/api` : '/api',
+		baseURL: import.meta.server ? `${config.public.appUrl}/api` : '/api',
 		timeout: 15_000,
 
 		onRequest<T>({ options }: FetchContext<T, ResponseType>): void {

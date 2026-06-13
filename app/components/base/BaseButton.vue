@@ -2,7 +2,7 @@
 	import { computed, useAttrs } from 'vue';
 
 	const attrs = useAttrs();
-	const defaultStyles = 'cursor-pointer rounded-md bg-gray-400 px-4 py-2 text-sm text-white hover:bg-gray-500';
+	const defaultStyles = 'cursor-pointer rounded-md bg-gray-400 px-4 py-2 text-sm text-white hover:bg-gray-100';
 
 	const buttonStyles = computed(() => cn(defaultStyles, attrs.class));
 

@@ -1,11 +1,11 @@
-import BaseHeaderNav from '@components/base/BaseHeaderNav.vue';
+import BaseNavList from '@components/base/BaseNavList.vue';
 import { renderSuspended } from '@nuxt/test-utils/runtime';
 import '@testing-library/jest-dom';
 import { type RenderResult } from '@testing-library/vue';
 import { describe, expect, test } from 'vitest';
 
 const renderBaseHeaderNav = async (): Promise<RenderResult> => {
-	return renderSuspended(BaseHeaderNav, {
+	return renderSuspended(BaseNavList, {
 		props: {
 			navLinks: [
 				{
