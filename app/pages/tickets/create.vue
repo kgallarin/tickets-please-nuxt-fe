@@ -1,6 +1,9 @@
 <script setup lang="ts">
+	import { computed } from 'vue';
+
 	const { create } = useTickets();
 	const { user: authUser } = useAuthUser();
+	const authUserId = computed(() => authUser.value?.id);
 	const form = reactive({
 		attributes: {
 			title: '',
@@ -10,7 +13,7 @@
 		relationships: {
 			user: {
 				data: {
-					id: authUser.value?.id,
+					id: authUserId.value,
 				},
 			},
 		},
@@ -20,7 +23,7 @@
 		try {
 			await create(form);
 		} finally {
-			navigateTo('/users');
+			navigateTo(`/authors/${authUserId.value}/tickets`);
 		}
 	}
 </script>

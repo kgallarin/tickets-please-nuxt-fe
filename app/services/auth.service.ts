@@ -1,7 +1,7 @@
 import type { $Fetch } from 'ofetch';
 import type { ApiResponse } from '~~/types/Api';
 import type { AuthResponse, LoginPayload } from '~~/types/Auth';
-import type { User } from '~~/types/User';
+import type { RawApiUser, User } from '~~/types/User';
 
 type ApiFetch = $Fetch;
 
@@ -14,7 +14,7 @@ export const authService = {
 		return $fetch('auth/logout', { method: 'POST' });
 	},
 
-	async fetchCurrentUser($fetch: ApiFetch): Promise<ApiResponse<User>> {
+	async fetchCurrentUser($fetch: ApiFetch): Promise<ApiResponse<RawApiUser>> {
 		return $fetch('v1/me');
 	},
 

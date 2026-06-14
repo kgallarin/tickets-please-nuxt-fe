@@ -3,6 +3,7 @@
 	import { computed } from 'vue';
 
 	const { isAuthenticated } = useAuthUser();
+	const { user: me } = useAuthUser();
 
 	const navLinks: ComputedRef<NavLink[]> = computed(() => [
 		{
@@ -10,26 +11,17 @@
 			href: '/',
 			auth: true,
 		},
-		{
-			label: 'tickets',
-			href: '/tickets',
-			auth: isAuthenticated.value,
-		},
-		{
-			label: 'create ticket',
-			href: '/tickets/create',
-			auth: isAuthenticated.value,
-		},
+		// {
+		// 	label: 'tickets',
+		// 	href: '/tickets',
+		// 	auth: isAuthenticated.value,
+		// },
 		{
 			label: 'users',
 			href: '/users',
 			auth: isAuthenticated.value,
 		},
-		{
-			label: 'create user',
-			href: '/users/create',
-			auth: isAuthenticated.value,
-		},
+
 		{
 			label: 'login',
 			href: '/auth/login',
@@ -40,20 +32,31 @@
 			href: '/authors',
 			auth: isAuthenticated.value,
 		},
+	]);
+	const dropdownNav: ComputedRef<NavLink[]> = computed(() => [
+		{
+			label: 'create',
+			href: `/tickets/create`,
+			auth: true,
+		},
+		{
+			label: 'my tickets',
+			href: `/authors/${me.value?.id}/tickets`,
+			auth: true,
+		},
 		{
 			label: 'logout',
 			href: null,
 			auth: isAuthenticated.value,
 		},
 	]);
-
 	const { logout } = useAuth();
 
 	async function handleLogout() {
 		await logout();
 	}
 
-	function handleHeaderNavEmit(itemLabel: string) {
+	function handleDropdownNavClick(itemLabel: string) {
 		switch (itemLabel) {
 			case 'logout':
 				handleLogout();
@@ -71,8 +74,23 @@
 			<NuxtLink to="/" class="font-linowrite">Tickets</NuxtLink>
 		</div>
 
-		<div class="mr-5">
-			<base-nav-list :nav-links="navLinks" @nav-on-click="handleHeaderNavEmit" />
+		<div class="mr-5 flex items-center">
+			<base-nav-list :nav-links="navLinks" />
+			<base-drop-down
+				v-if="isAuthenticated"
+				:nav-links="dropdownNav"
+				class="pl-8"
+				@on-drop-down-nav-click="handleDropdownNavClick"
+			>
+				<div class="flex items-center">
+					<span class="font-roboto mr-2 text-sm">
+						{{ me?.name }}
+					</span>
+					<div class="h-8 w-8 rounded-full border border-b-gray-600">
+						<img src="" alt="" />
+					</div>
+				</div>
+			</base-drop-down>
 		</div>
 	</nav>
 </template>
