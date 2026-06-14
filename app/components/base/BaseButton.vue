@@ -22,6 +22,7 @@
 
 <template>
 	<button :type="type" :class="buttonStyles" :disabled="loading">
-		{{ loading ? 'loading' : label }}
+		<span v-if="label">{{ loading ? 'loading' : label }}</span>
+		<slot v-else />
 	</button>
 </template>
