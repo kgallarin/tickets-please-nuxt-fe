@@ -1,7 +1,7 @@
 import type { $Fetch } from 'ofetch';
 import type { ApiResponse } from '~~/types/Api';
 import type { AuthResponse, LoginPayload } from '~~/types/Auth';
-import type { RawApiUser, User } from '~~/types/User';
+import type { RawApiUser } from '~~/types/User';
 
 type ApiFetch = $Fetch;
 

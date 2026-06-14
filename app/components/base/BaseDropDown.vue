@@ -3,7 +3,6 @@
 
 	const isDropDownOpen = ref(false);
 	import { vOnClickOutside } from '@vueuse/components';
-	import { computed } from 'vue';
 
 	const props = withDefaults(
 		defineProps<{
