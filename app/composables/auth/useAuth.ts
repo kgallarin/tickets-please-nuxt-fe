@@ -1,5 +1,6 @@
 import { navigateTo } from '#imports';
 import { authService } from '~/services';
+import { userService } from '~/services/user.service';
 import type { ApiError } from '~~/types/Api';
 import type { LoginPayload } from '~~/types/Auth';
 
@@ -42,7 +43,7 @@ export function useAuth() {
 	async function fetchCurrentUser(): Promise<void> {
 		try {
 			const res = await authService.fetchCurrentUser($apiFetch);
-			store.setSession(res.data);
+			store.setSession(userService.normalizeUserData(res.data));
 		} catch {
 			store.clearSession();
 		}

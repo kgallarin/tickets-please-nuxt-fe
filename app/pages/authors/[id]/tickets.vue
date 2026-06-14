@@ -8,9 +8,9 @@
 	const handleDeleteTicket = async (ticketId: string) => await destroyUserTicket(ticketId);
 
 	const router = useRouter();
-	// async function handleEditTicket(id: string) {
-	// 	await router.push(`/tickets/${id}/edit`);
-	// }
+	async function handleEditTicket(id: string) {
+		await router.push(`/tickets/${id}/edit`);
+	}
 	function handleGoBack() {
 		return router.back();
 	}
@@ -22,7 +22,7 @@
 
 <template>
 	<div>
-		<div class="relative py-8">
+		<div class="relative mx-auto max-w-xl py-8">
 			<a href="#" class="absolute top-1/2 left-2 -translate-x-1/2 -translate-y-1/2" @click.prevent.stop="handleGoBack">
 				<icon :icon="['fas', 'arrow-left']" />
 			</a>
@@ -51,6 +51,7 @@
 					v-for="ticket in normalizedTickets"
 					:key="ticket.id"
 					:ticket="ticket"
+					@on-edit="handleEditTicket"
 					@on-delete="handleDeleteTicket"
 				/>
 			</div>
