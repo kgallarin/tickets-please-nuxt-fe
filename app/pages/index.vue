@@ -4,7 +4,7 @@
 		description: 'Browse tickets',
 	});
 
-	definePageMeta({ middleware: 'auth' });
+	// definePageMeta({ middleware: 'guest' });
 	const router = useRouter();
 
 	const { items, destroy } = useTickets();

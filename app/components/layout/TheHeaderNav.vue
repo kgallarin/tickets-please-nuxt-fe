@@ -9,7 +9,7 @@
 		{
 			label: 'home',
 			href: '/',
-			auth: true,
+			auth: isAuthenticated.value,
 		},
 		// {
 		// 	label: 'tickets',
