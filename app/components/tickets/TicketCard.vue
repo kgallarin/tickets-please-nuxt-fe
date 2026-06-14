@@ -6,13 +6,15 @@
 		onEdit: [id: string];
 	}>();
 
+	const { isAuthenticated } = useAuthUser();
+
 	function handleEmitDelete() {
-		if (!props.ticket?.id) return;
+		if (!props.ticket?.id || !isAuthenticated.value) return;
 		emit('onDelete', props.ticket?.id);
 	}
 
 	function handleEmitEdit() {
-		if (!props.ticket?.id) return;
+		if (!props.ticket?.id || !isAuthenticated.value) return;
 		emit('onEdit', props.ticket?.id);
 	}
 
@@ -28,7 +30,7 @@
 		@mouseleave="showDelete = false"
 	>
 		<div
-			v-if="showDelete"
+			v-if="showDelete && isAuthenticated"
 			class="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-2"
 			@click.prevent.stop="handleEmitDelete"
 		>

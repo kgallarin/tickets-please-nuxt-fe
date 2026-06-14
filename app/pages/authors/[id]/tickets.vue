@@ -5,6 +5,8 @@
 	const userId = computed(() => route.params.id as string);
 	const { normalizedAuthor, normalizedTickets, loading, destroyUserTicket } = useAuthor(userId);
 
+	const isMyTickets = computed(() => route.params.id === user.value?.id);
+
 	const handleDeleteTicket = async (ticketId: string) => await destroyUserTicket(ticketId);
 
 	const router = useRouter();
@@ -26,7 +28,7 @@
 			<a href="#" class="absolute top-1/2 left-2 -translate-x-1/2 -translate-y-1/2" @click.prevent.stop="handleGoBack">
 				<icon :icon="['fas', 'arrow-left']" />
 			</a>
-			<h1 class="text-center text-lg">User with Tickets</h1>
+			<h1 class="text-center text-lg">{{ isMyTickets ? 'My Tickets' : 'User Tickets' }}</h1>
 			<base-button
 				v-if="user?.id.toString() === userId"
 				class="absolute top-1/2 right-0 -translate-y-1/2 border border-green-300 bg-transparent text-gray-800"
