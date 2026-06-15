@@ -21,7 +21,7 @@ export function useAuth() {
 			await navigateTo('/');
 		} catch (e) {
 			if (e) {
-				error.value = (e as ApiError).data?.message ?? 'Login failed.';
+				error.value = (e as ApiError)?.message ?? 'Login failed.';
 			}
 		} finally {
 			store.setLoading({ type: 'login', flag: false });
