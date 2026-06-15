@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import { z } from 'zod';
 	import { toTypedSchema } from '@vee-validate/zod';
-	import { useField } from 'vee-validate';
 	import type { LoginPayload } from '~~/types/Auth';
 
 	definePageMeta({

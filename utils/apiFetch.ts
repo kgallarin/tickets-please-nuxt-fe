@@ -1,4 +1,4 @@
-import { createError, navigateTo, useRequestHeaders } from '#imports';
+import { createError, useRequestHeaders } from '#imports';
 import { type $Fetch, $fetch, type FetchContext, type FetchOptions, type ResponseType } from 'ofetch';
 import type { ApiError } from '~~/types/Api';
 
