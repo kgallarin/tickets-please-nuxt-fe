@@ -39,5 +39,6 @@
 			class="block w-full rounded-md border px-3 py-2"
 			:class="error ? 'border-red-500' : 'border-gray-300'"
 		/>
+		<p class="text-sm text-red-500">{{ error }}</p>
 	</div>
 </template>

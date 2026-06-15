@@ -30,12 +30,10 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 
 			switch (response.status) {
 				case 401:
-					// Redirect to login only on the client — navigateTo during SSR
-					// would hijack the server response and cause redirect loops.
-					if (import.meta.client) {
-						navigateTo('auth/login');
-					}
-					break;
+					throw createError({
+						status: 401,
+						message: error.data?.message ?? 'Unauthorized',
+					});
 
 				case 403:
 					throw createError({

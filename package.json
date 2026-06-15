@@ -23,15 +23,20 @@
 		"@nuxtjs/google-fonts": "^3.2.0",
 		"@pinia/nuxt": "^0.11.3",
 		"@tailwindcss/vite": "^4.2.4",
+		"@vee-validate/nuxt": "^4.15.1",
+		"@vee-validate/zod": "^4.15.1",
 		"@vueuse/components": "^14.3.0",
 		"@vueuse/core": "^14.3.0",
 		"clsx": "^2.1.1",
-		"nuxt": "^4.4.7",
+		"nuxt": "^4.4.8",
 		"pinia": "^3.0.4",
 		"tailwind-merge": "^3.6.0",
 		"tailwindcss": "^4.2.4",
+		"vee-validate": "^4.15.1",
+		"vite": "^8.0.16",
 		"vue": "^3.5.33",
-		"vue-router": "^5.0.6"
+		"vue-router": "^5.0.6",
+		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@nuxt/test-utils": "^4.0.3",
@@ -39,6 +44,7 @@
 		"@testing-library/vue": "^8.1.0",
 		"@trivago/prettier-plugin-sort-imports": "^6.0.2",
 		"@types/node": "^25.6.0",
+		"esbuild": "^0.28.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-vue": "^10.9.1",
 		"globals": "^17.6.0",
@@ -50,5 +56,8 @@
 		"typescript-eslint": "^8.59.2",
 		"vitest": "^4.1.7",
 		"vue-tsc": "^3.2.8"
+	},
+	"resolutions": {
+		"esbuild": "^0.28.1"
 	}
 }
