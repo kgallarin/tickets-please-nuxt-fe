@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { z } from 'zod';
 	import { toTypedSchema } from '@vee-validate/zod';
-	import { useField, useForm } from 'vee-validate';
+	import { useField } from 'vee-validate';
 	import type { LoginPayload } from '~~/types/Auth';
 
 	definePageMeta({
@@ -21,14 +21,15 @@
 		}),
 	);
 
-	const { errors, handleSubmit, submitCount } = useForm({
-		validationSchema: loginSchema,
+	const { defineField, errors, handleSubmit, submitCount } = useAppForm({
+		schema: loginSchema,
 	});
 
-	const { value: email } = useField<string>('email');
-	const { value: password } = useField<string>('password');
+	const [email] = defineField('email');
+	const [password] = defineField('password');
 
 	const { login, loginLoading, error } = useAuth();
+
 	const onSubmit = handleSubmit(async (values) => {
 		await login(values as LoginPayload);
 	});
@@ -42,12 +43,7 @@
 				<p class="font-inter text-sm text-red-400">{{ error }}</p>
 			</div>
 
-			<base-input
-				v-model="email"
-				label="email"
-				type="email"
-				:error="submitCount > 0 && errors.email ? errors.email : ''"
-			/>
+			<base-input v-model="email" label="email" :error="submitCount > 0 && errors.email ? errors.email : ''" />
 
 			<base-input
 				v-model="password"

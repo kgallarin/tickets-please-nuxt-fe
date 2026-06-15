@@ -6,7 +6,7 @@ import type { UseAppFormOptions } from '~~/types/Form';
 export function useAppForm<T extends Record<string, unknown>>({ schema, initialValues }: UseAppFormOptions<T>) {
 	// init form controller
 	const {
-		errors,
+		errors: rawErrs,
 		handleSubmit,
 		submitCount,
 		resetForm,
@@ -23,9 +23,9 @@ export function useAppForm<T extends Record<string, unknown>>({ schema, initialV
 		const activeErrors: Record<string, string> = {};
 
 		if (submitCount.value > 0) {
-			for (const [key, errorMsg] of Object.entries(errors.value)) {
+			for (const [key, errorMsg] of Object.entries(rawErrs.value)) {
 				if (errorMsg) {
-					activeErrors[key as string] = errorMsg;
+					activeErrors[key] = errorMsg;
 				}
 			}
 		}
@@ -36,7 +36,7 @@ export function useAppForm<T extends Record<string, unknown>>({ schema, initialV
 	return {
 		defineField,
 		handleSubmit,
-		formErrors,
+		errors: formErrors,
 		resetForm,
 		formValues,
 		setErrors,
