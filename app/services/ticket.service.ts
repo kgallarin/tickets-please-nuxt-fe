@@ -1,5 +1,5 @@
 import { type $Fetch } from 'ofetch';
-import type { RawApiTicket, Ticket, TicketPayload } from '~~/types/Ticket';
+import type { RawApiTicket, Ticket, TicketPayload, TicketStatus } from '~~/types/Ticket';
 import type { User } from '~~/types/User';
 
 type ApiFetch = $Fetch;
@@ -23,7 +23,9 @@ export const ticketService = {
 			method: 'PATCH',
 			body: {
 				data: {
-					...payload,
+					attributes: {
+						...payload,
+					},
 				},
 			},
 		});
@@ -47,10 +49,12 @@ export const ticketService = {
 	},
 
 	normalizeTicketData(rawTicket: RawApiTicket): Ticket {
+		const allowedTicketStatus: TicketStatus[] = ['A', 'C', 'H', 'X'];
+		const status = rawTicket.attributes.status || 'Invalid status';
 		return {
 			id: rawTicket.id.toString(),
 			title: rawTicket.attributes.title,
-			status: rawTicket.attributes.status,
+			status: allowedTicketStatus.includes(status as TicketStatus) ? (status as TicketStatus) : null,
 			description: rawTicket.attributes.description,
 			created_at: rawTicket.attributes.created_at,
 			updated_at: rawTicket.attributes.updated_at,

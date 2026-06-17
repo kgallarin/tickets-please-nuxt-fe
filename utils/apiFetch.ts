@@ -42,11 +42,10 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 					});
 
 				case 422:
-					// validation errors
 					throw createError({
 						status: 422,
-						message: error?.message ?? 'Validation error',
-						data: error?.errors ?? {},
+						message: error?.message || 'Validation error',
+						data: error?.errors ?? error.data ?? {},
 					});
 
 				case 500:

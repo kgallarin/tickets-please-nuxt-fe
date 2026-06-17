@@ -15,7 +15,7 @@ const renderBaseTicket = async (props: { ticket: Ticket }): Promise<RenderResult
 const defaultTicketProp: Ticket = {
 	id: '1',
 	title: 'Sample Ticket',
-	status: 'Open',
+	status: 'X',
 	description: 'I am ticket',
 	created_at: '2023-01-01T00:00:00Z',
 	updated_at: '2023-01-01T00:00:00Z',

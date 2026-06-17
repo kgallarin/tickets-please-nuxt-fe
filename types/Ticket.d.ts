@@ -1,5 +1,6 @@
 import type { User } from '~~/types/User';
 
+export type TicketStatus = 'A' | 'C' | 'H' | 'X' | null;
 export interface RawApiTicket {
 	type: string;
 	id: number;
@@ -20,7 +21,7 @@ export interface RawApiTicket {
 export interface Ticket {
 	id: string;
 	title: string;
-	status: string;
+	status: TicketStatus;
 	description: string;
 	created_at: string;
 	updated_at: string;
@@ -28,9 +29,20 @@ export interface Ticket {
 }
 
 export interface TicketPayload {
-	attributes: {
-		title: string;
-		description: string;
-		status: string;
+	title: string;
+	description: string;
+	status: TicketStatus;
+}
+
+export interface TicketPayloadCreate {
+	title: string;
+	description: string;
+	status: TicketStatus;
+	relationships: {
+		user: {
+			data: {
+				id: authUserId.value;
+			};
+		};
 	};
 }

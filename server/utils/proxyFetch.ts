@@ -35,11 +35,11 @@ export function createServerFetch(event: H3Event) {
 					});
 
 				case 422:
-					// validation errors
 					throw createError({
 						status: 422,
-						message: error?.message ?? 'Validation error',
-						data: error?.data ?? {},
+						message: response._data?.message ?? 'Validation error',
+						// Direct Laravel structure or fallback to finding the root error object/array
+						data: error?.errors ?? error.data ?? {},
 					});
 
 				case 500:
