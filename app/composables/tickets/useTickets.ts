@@ -1,9 +1,8 @@
 import { type Ref } from 'vue';
 
-import type { GenericObject } from 'vee-validate';
 import { ticketService } from '~/services/ticket.service';
 import type { ApiError } from '~~/types/Api';
-import type { RawApiTicket, Ticket, TicketPayload, TicketPayloadCreate } from '~~/types/Ticket';
+import type { RawApiTicket, Ticket, TicketPayloadCreate } from '~~/types/Ticket';
 
 interface ValidationErrorItem {
 	status: number;
