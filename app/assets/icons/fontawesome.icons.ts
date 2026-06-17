@@ -5,6 +5,7 @@ export {
 	faChevronLeft,
 	faChevronRight,
 	faChevronUp,
+	faChevronDown,
 	faHeart,
 	faLaptopFile,
 	faMoon,

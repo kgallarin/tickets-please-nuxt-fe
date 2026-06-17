@@ -18,6 +18,7 @@ export interface ApiError {
 	data: {
 		status: number;
 		message: string;
+		errors: [];
 	};
 	status: number;
 	message: string;

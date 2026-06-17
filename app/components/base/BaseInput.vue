@@ -24,7 +24,6 @@
 			:id="($attrs.id as string) || label"
 			v-model="model"
 			v-bind="$attrs"
-			minlength="10"
 			cols="15"
 			rows="5"
 			class="rounded-md border p-4"
