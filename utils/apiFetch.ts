@@ -25,11 +25,14 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 		},
 
 		// errors
-		onResponseError({ response }) {
+		async onResponseError({ response }) {
 			const error = response._data as ApiError;
 
 			switch (response.status) {
 				case 401:
+					if (error?.data.errors?.source === 'auth') {
+						window.location.href = '/auth/login';
+					}
 					throw createError({
 						status: 401,
 						message: error.data?.message ?? 'Unauthorized',

@@ -53,8 +53,12 @@ export function useAuth() {
 		login,
 		logout,
 		fetchCurrentUser,
-		loginLoading: computed((): boolean => store.getLoading('login')),
-		logoutLoading: computed((): boolean => store.getLoading('logout')),
+		loginLoading: computed((): boolean => {
+			return typeof store.getLoading === 'function' ? store.getLoading('login') : false;
+		}),
+		logoutLoading: computed((): boolean => {
+			return typeof store.getLoading === 'function' ? store.getLoading('logout') : false;
+		}),
 		error,
 	};
 }
