@@ -48,6 +48,13 @@ export function createApiFetch(overrides: FetchOptions = {}): $Fetch {
 						data: error?.errors ?? error.data ?? {},
 					});
 
+				case 409:
+					throw createError({
+						status: 409,
+						message: error?.message ?? 'Not allowed',
+						data: error?.errors ?? error.data ?? {},
+					});
+
 				case 500:
 					throw createError({
 						status: 500,

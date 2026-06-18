@@ -35,7 +35,12 @@
 	]);
 	const dropdownNav: ComputedRef<NavLink[]> = computed(() => [
 		{
-			label: 'create',
+			label: 'create user',
+			href: `/users/create`,
+			auth: true,
+		},
+		{
+			label: 'create ticket',
 			href: `/tickets/create`,
 			auth: true,
 		},

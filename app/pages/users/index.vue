@@ -1,4 +1,7 @@
 <script setup lang="ts">
+	import { toTypedSchema } from '@vee-validate/zod';
+	import { z } from 'zod';
+
 	useSeoPage({
 		title: 'Authors',
 		description: 'List of users',
@@ -8,10 +11,31 @@
 		middleware: 'auth',
 	});
 
+	const deleteUserSchema = toTypedSchema(
+		z.object({
+			id: z.string(),
+		}),
+	);
+	const { setErrors, setFieldValue, formValues, handleSubmit, errors } = useAppForm({
+		schema: deleteUserSchema,
+		initialValues: { id: '' },
+	});
 	const { items, loading, destroy } = useUsers();
 
-	async function handleDeleteUser(id: string) {
-		await destroy(id);
+	const executeDeleteUser = handleSubmit(async (values) => {
+		try {
+			await destroy(values.id as string);
+		} catch (e) {
+			setErrors({
+				id: 'Cannot delete this user, it is linked to some tickets',
+			});
+			throw e;
+		}
+	});
+	function handleDeleteUser(id: string) {
+		setErrors({ id: undefined });
+		setFieldValue('id', id);
+		executeDeleteUser();
 	}
 
 	function handleEditUser(id: string) {
@@ -34,6 +58,14 @@
 			v-else
 			:key="item.id"
 			:user="item"
+			:error="
+				formValues.id === item.id
+					? {
+							id: item.id,
+							message: errors.id,
+						}
+					: undefined
+			"
 			@on-delete="handleDeleteUser"
 			@on-edit="handleEditUser"
 		/>
