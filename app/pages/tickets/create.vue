@@ -4,7 +4,7 @@
 	import { toTypedSchema } from '@vee-validate/zod';
 	import type { TicketPayloadCreate, TicketStatus } from '~~/types/Ticket';
 
-	const { create, validationErrors } = useTickets();
+	const { create } = useTickets();
 	const { user: authUser } = useAuthUser();
 
 	const ticketStatusOptions = [
@@ -33,8 +33,12 @@
 	const createTicketSchema = toTypedSchema(
 		z.object({
 			attributes: z.object({
-				title: z.string().min(4, { message: 'Title must be at least 4 characters' }),
-				description: z.string().min(5, 'Description must have at least 5 characters.'),
+				title: z
+					.string({ message: 'This field is required' })
+					.min(4, { message: 'Title must be at least 4 characters' }),
+				description: z
+					.string({ message: 'This field is required' })
+					.min(5, 'Description must have at least 5 characters.'),
 				status: z
 					.enum(['A', 'C', 'H', 'X'], {
 						errorMap: () => ({
@@ -47,32 +51,30 @@
 	);
 
 	const authUserId = computed(() => authUser.value?.id);
-	const { defineField, errors, handleSubmit, submitCount, setErrors } = useAppForm({
+	const { defineField, errors, handleSubmit, submitCount, setApiErrorsToForm } = useAppForm({
 		schema: createTicketSchema,
 	});
 
 	const [title] = defineField('attributes.title');
 	const [description] = defineField('attributes.description');
 	const [status] = defineField('attributes.status');
-	// const [userId] = defineField('relationships.user.data.id');
 
 	const onSubmit = handleSubmit(async (values) => {
-		await create({
-			...values,
-			relationships: {
-				user: {
-					data: {
-						id: authUserId.value,
+		try {
+			await create({
+				...values,
+				relationships: {
+					user: {
+						data: {
+							id: authUserId.value,
+						},
 					},
 				},
-			},
-		} as TicketPayloadCreate);
-		navigateTo('/tickets');
-	});
+			} as TicketPayloadCreate);
 
-	watch(validationErrors, (errs) => {
-		if (Object.keys(errs).length > 0) {
-			setErrors(toRaw(errs));
+			navigateTo('/tickets');
+		} catch (e) {
+			setApiErrorsToForm(e);
 		}
 	});
 </script>

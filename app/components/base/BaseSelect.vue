@@ -81,7 +81,7 @@
 			{{ hint }}
 		</p>
 
-		<p v-if="error" :id="`${id}-error`" class="text-xs text-red-600 dark:text-red-400" role="alert">
+		<p v-if="error" :id="`${id}-error`" class="text-xs text-red-400" role="alert">
 			{{ error }}
 		</p>
 	</div>

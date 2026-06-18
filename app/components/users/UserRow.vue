@@ -8,12 +8,22 @@
 			editButtonLabel?: string;
 			deleteButtonLabel?: string;
 			viewButtonLabel?: string;
+			error?: {
+				id: string;
+				message?: string;
+			};
+			index?: number;
 		}>(),
 		{
 			actions: () => ['view', 'edit', 'delete'],
 			editButtonLabel: 'edit',
 			deleteButtonLabel: 'delete',
 			viewButtonLabel: 'view',
+			error: () => ({
+				id: '',
+				message: undefined,
+			}),
+			index: 0,
 		},
 	);
 
@@ -22,6 +32,8 @@
 		onDelete: [id: string];
 		onView: [id: string];
 	}>();
+
+	const rowHasErrors = computed(() => props.error?.id === props.user.id && !!props.error?.message);
 	function handleEditUser() {
 		// navigateTo(`users/${props.user.id}/edit`);
 		emit('onEdit', props.user.id);
@@ -37,35 +49,43 @@
 </script>
 
 <template>
-	<div class="divide font-sm mt-4 flex w-full border-b border-gray-200 pb-3">
-		<div class="flex-1 text-center">
-			{{ user.name }}
+	<div>
+		<div
+			class="divide font-sm mt-4 flex w-full border-b border-gray-200 p-3 px-1"
+			:class="rowHasErrors ? 'bg-red-50' : ''"
+		>
+			<div class="flex-1 text-center">
+				{{ user.name }}
+			</div>
+			<div class="flex-1 text-center">
+				{{ user.email }}
+			</div>
+			<div class="flex-1 text-center">
+				{{ user.isAdmin }}
+			</div>
+			<div class="flex flex-1 justify-center space-x-2">
+				<base-button
+					v-if="actions?.includes('view')"
+					:label="viewButtonLabel"
+					class="border border-blue-500 bg-transparent text-gray-800"
+					@click.prevent.stop="handleViewUser"
+				/>
+				<base-button
+					v-if="actions?.includes('edit')"
+					:label="editButtonLabel"
+					class="border border-orange-500 bg-transparent text-gray-800"
+					@click.prevent.stop="handleEditUser"
+				/>
+				<base-button
+					v-if="actions?.includes('delete')"
+					class="border border-red-500 bg-transparent text-gray-800"
+					:label="deleteButtonLabel"
+					@click.prevent.stop="handleDeleteUser"
+				/>
+			</div>
 		</div>
-		<div class="flex-1 text-center">
-			{{ user.email }}
-		</div>
-		<div class="flex-1 text-center">
-			{{ user.isAdmin }}
-		</div>
-		<div class="flex flex-1 justify-center space-x-2">
-			<base-button
-				v-if="actions?.includes('view')"
-				:label="viewButtonLabel"
-				class="border border-blue-500 bg-transparent text-gray-800"
-				@click.prevent.stop="handleViewUser"
-			/>
-			<base-button
-				v-if="actions?.includes('edit')"
-				:label="editButtonLabel"
-				class="border border-orange-500 bg-transparent text-gray-800"
-				@click.prevent.stop="handleEditUser"
-			/>
-			<base-button
-				v-if="actions?.includes('delete')"
-				class="border border-red-500 bg-transparent text-gray-800"
-				:label="deleteButtonLabel"
-				@click.prevent.stop="handleDeleteUser"
-			/>
+		<div v-if="rowHasErrors" class="bg-red-100 p-1 text-center text-xs text-red-400">
+			{{ error?.message }}
 		</div>
 	</div>
 </template>

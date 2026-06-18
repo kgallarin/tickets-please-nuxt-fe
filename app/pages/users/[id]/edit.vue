@@ -1,22 +1,45 @@
 <script setup lang="ts">
 	import { computed } from 'vue';
 	import { userService } from '~/services/user.service';
+	import { z } from 'zod';
+	import { toTypedSchema } from '@vee-validate/zod';
+	import type { UserPayload } from '~~/types/User';
 
-	const form = reactive({
-		attributes: {
-			name: '',
-			email: '',
-			isAdmin: false,
-		},
+	const editUserSchema = toTypedSchema(
+		z.object({
+			name: z.string().min(4, {
+				message: 'Name must be at least 4 characters',
+			}),
+			email: z
+				.string()
+				.email({
+					message: 'Please input a valid email',
+				})
+				.min(4, { message: 'Email must be at least 4 characters ' }),
+			isAdmin: z.boolean(),
+		}),
+	);
+
+	const { defineField, errors, handleSubmit, resetForm, setApiErrorsToForm, submitCount } = useAppForm({
+		schema: editUserSchema,
 	});
+
+	const [name] = defineField('name');
+	const [email] = defineField('email');
+	const [isAdmin] = defineField('isAdmin');
 
 	const route = useRoute();
 	const userId = computed(() => route.params.id as string);
 	const { user, edit } = useUser(userId);
 
-	async function handleEditTicket() {
-		await edit(form);
-	}
+	const handleSubmitEditTicket = handleSubmit(async (values) => {
+		try {
+			await edit(values as UserPayload);
+			navigateTo('/users');
+		} catch (e) {
+			setApiErrorsToForm(e);
+		}
+	});
 
 	const router = useRouter();
 	function handleGoBack() {
@@ -27,7 +50,9 @@
 		user,
 		(newVal) => {
 			if (newVal) {
-				Object.assign(form.attributes, userService.normalizeUserData(newVal));
+				resetForm({
+					values: userService.normalizeUserData(newVal),
+				});
 			}
 		},
 		{ immediate: true },
@@ -42,10 +67,15 @@
 			</a>
 			<h1 class="py-8 text-center text-lg">Edit User</h1>
 		</div>
-		<form class="flex flex-col gap-8" @submit.prevent="handleEditTicket">
-			<base-input v-model="form.attributes.name" label="name" type="text" />
-			<base-input v-model="form.attributes.email" label="email" type="text" />
-			<base-switch v-model="form.attributes.isAdmin" label="Admin" />
+		<form class="flex flex-col gap-8" @submit.prevent="handleSubmitEditTicket">
+			<base-input v-model="name" label="name" type="text" :error="submitCount > 0 && errors.name ? errors.name : ''" />
+			<base-input
+				v-model="email"
+				label="email"
+				type="text"
+				:error="submitCount > 0 && errors.email ? errors.email : ''"
+			/>
+			<base-switch v-model="isAdmin" label="Admin" />
 
 			<base-button type="submit" label="edit" class="bg-gray-900 text-white" />
 		</form>

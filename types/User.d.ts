@@ -18,10 +18,8 @@ export interface RawApiUser {
 }
 
 export interface UserPayload {
-	attributes: {
-		name: string;
-		email: string;
-		password?: string;
-		isAdmin: boolean;
-	};
+	name: string;
+	email: string;
+	password?: string;
+	isAdmin: boolean;
 }

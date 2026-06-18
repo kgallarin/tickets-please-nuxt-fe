@@ -10,7 +10,9 @@ export const userService = {
 			method: 'POST',
 			body: {
 				data: {
-					...payload,
+					attributes: {
+						...payload,
+					},
 				},
 			},
 		});
@@ -28,7 +30,9 @@ export const userService = {
 			method: 'PATCH',
 			body: {
 				data: {
-					...payload,
+					attributes: {
+						...payload,
+					},
 				},
 			},
 		});
