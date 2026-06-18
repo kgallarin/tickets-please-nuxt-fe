@@ -4,21 +4,37 @@ export interface ApiResponse<T> {
 	success: boolean;
 }
 
+export interface ResponseMeta {
+	current_page: number;
+	from: number | null;
+	last_page: number;
+	path: string;
+	per_page: number;
+	to: number | null;
+	total: number;
+}
+
+export interface ResponseLinks {
+	first: string;
+	last: string;
+	prev: string | null;
+	next: string | null;
+}
+
 export interface PaginatedApiResponse<T = unknown> {
 	data: T[];
-	meta: {
-		totalCount: number;
-		page: number;
-		lastPage: number;
-		pageSize: number;
-	};
+	meta: ResponseMeta;
+	links: ResponseLinks;
 }
 
 export interface ApiError {
 	data: {
 		status: number;
 		message: string;
-		errors: [];
+		source?: string;
+		errors: {
+			source: string;
+		};
 	};
 	status: number;
 	message: string;

@@ -20,7 +20,14 @@
 		schema: deleteUserSchema,
 		initialValues: { id: '' },
 	});
-	const { items, loading, destroy } = useUsers();
+
+	const { page, limit, paginationRange } = usePagination(() => totalItems.value, {
+		defaultLimit: 5,
+	});
+	const { items, loading, totalItems, destroy } = useUsers(
+		() => page.value,
+		() => limit.value,
+	);
 
 	const executeDeleteUser = handleSubmit(async (values) => {
 		try {
@@ -40,6 +47,10 @@
 
 	function handleEditUser(id: string) {
 		navigateTo(`users/${id}/edit`);
+	}
+
+	function handleViewUser(id: string) {
+		navigateTo(`/authors/${id}/tickets`);
 	}
 </script>
 
@@ -68,7 +79,10 @@
 			"
 			@on-delete="handleDeleteUser"
 			@on-edit="handleEditUser"
+			@on-view="handleViewUser"
 		/>
+
+		<base-pagination v-model="page" :total="totalItems" :limit="limit" :range="paginationRange" />
 	</div>
 </template>
 

@@ -8,7 +8,14 @@
 		middleware: 'auth',
 	});
 
-	const { items, loading } = useAuthors();
+	const { page, limit, paginationRange } = usePagination(() => totalItems.value, {
+		defaultLimit: 5,
+	});
+
+	const { items, loading, totalItems } = useAuthors(
+		() => page.value,
+		() => limit.value,
+	);
 
 	async function handleRouteToViewAuthorTickets(id: string) {
 		navigateTo(`/authors/${id}/tickets`);
@@ -39,6 +46,8 @@
 			@on-view="handleRouteToViewAuthorTickets"
 			@on-edit="handleEditUser"
 		/>
+
+		<base-pagination v-model="page" :total="totalItems" :limit="limit" :range="paginationRange" />
 	</div>
 </template>
 

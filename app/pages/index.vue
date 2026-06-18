@@ -4,10 +4,16 @@
 		description: 'Browse tickets',
 	});
 
-	// definePageMeta({ middleware: 'guest' });
 	const router = useRouter();
 
-	const { items, destroy } = useTickets();
+	const { page, limit, paginationRange } = usePagination(() => totalItems.value, {
+		defaultLimit: 8,
+	});
+
+	const { items, totalItems, destroy } = useTickets(
+		() => page.value,
+		() => limit.value,
+	);
 
 	const handleDeleteTicket = async (id: string) => await destroy(id);
 	async function handleEditTicket(id: string) {
@@ -27,4 +33,5 @@
 			/>
 		</template>
 	</div>
+	<base-pagination v-model="page" :total="totalItems" :limit="limit" :range="paginationRange" />
 </template>
