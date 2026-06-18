@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import { toTypedSchema } from '@vee-validate/zod';
 	import { z } from 'zod';
-	import type { ApiError } from '~~/types/Api';
 
 	useSeoPage({
 		title: 'Authors',
@@ -17,7 +16,7 @@
 			id: z.string(),
 		}),
 	);
-	const { setErrors, setFieldValue, setApiErrorsToForm, formValues, handleSubmit, errors } = useAppForm({
+	const { setErrors, setFieldValue, formValues, handleSubmit, errors } = useAppForm({
 		schema: deleteUserSchema,
 		initialValues: { id: '' },
 	});
@@ -30,6 +29,7 @@
 			setErrors({
 				id: 'Cannot delete this user, it is linked to some tickets',
 			});
+			throw e;
 		}
 	});
 	function handleDeleteUser(id: string) {
