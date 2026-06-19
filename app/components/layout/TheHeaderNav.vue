@@ -27,11 +27,11 @@
 			href: '/auth/login',
 			auth: !isAuthenticated.value,
 		},
-		{
-			label: 'authors',
-			href: '/authors',
-			auth: isAuthenticated.value,
-		},
+		// {
+		// 	label: 'authors',
+		// 	href: '/authors',
+		// 	auth: isAuthenticated.value,
+		// },
 	]);
 	const dropdownNav: ComputedRef<NavLink[]> = computed(() => [
 		{

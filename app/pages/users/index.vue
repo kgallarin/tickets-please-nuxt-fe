@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { toTypedSchema } from '@vee-validate/zod';
 	import { z } from 'zod';
+	import type { ApiError } from '~~/types/Api';
 
 	useSeoPage({
 		title: 'Authors',
@@ -30,27 +31,38 @@
 	);
 
 	const executeDeleteUser = handleSubmit(async (values) => {
-		try {
-			await destroy(values.id as string);
-		} catch (e) {
-			setErrors({
-				id: 'Cannot delete this user, it is linked to some tickets',
-			});
-			throw e;
-		}
+		await destroy(values.id as string);
 	});
+
+	const { triggerModal } = useGlobalModal();
+
 	function handleDeleteUser(id: string) {
-		setErrors({ id: undefined });
-		setFieldValue('id', id);
-		executeDeleteUser();
+		triggerModal({
+			title: 'Are you sure?',
+			description: 'Deleting user cannot be undone',
+			actionLabel: 'Confirm',
+			cancelLabel: 'Cancel',
+			onConfirm: async () => {
+				setErrors({ id: undefined });
+				setFieldValue('id', id);
+				try {
+					await executeDeleteUser();
+				} catch (e) {
+					const error = e as ApiError;
+					setErrors({
+						id: `${error?.message}: Cannot delete this user, it is linked to some tickets`,
+					});
+				}
+			},
+		});
+	}
+
+	async function handleRouteToViewAuthorTickets(id: string) {
+		navigateTo(`/authors/${id}/tickets`);
 	}
 
 	function handleEditUser(id: string) {
 		navigateTo(`users/${id}/edit`);
-	}
-
-	function handleViewUser(id: string) {
-		navigateTo(`/authors/${id}/tickets`);
 	}
 </script>
 
@@ -77,9 +89,10 @@
 						}
 					: undefined
 			"
+			view-button-label="tickets"
 			@on-delete="handleDeleteUser"
 			@on-edit="handleEditUser"
-			@on-view="handleViewUser"
+			@on-view="handleRouteToViewAuthorTickets"
 		/>
 
 		<base-pagination v-model="page" :total="totalItems" :limit="limit" :range="paginationRange" />
