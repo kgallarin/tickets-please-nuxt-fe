@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import { useGlobalModal } from '~/composables/app/useSingletonModal';
+
 	useSeoPage({
 		title: 'Home',
 		description: 'Browse tickets',
@@ -15,7 +17,19 @@
 		() => limit.value,
 	);
 
-	const handleDeleteTicket = async (id: string) => await destroy(id);
+	const { triggerModal } = useGlobalModal();
+
+	const handleConfirmDeleteTicket = (id: string) => {
+		triggerModal({
+			title: 'Are you sure?',
+			description: 'Deleting ticket cannot be undone',
+			actionLabel: 'confirm',
+			onConfirm: async () => {
+				await destroy(id);
+			},
+		});
+	};
+
 	async function handleEditTicket(id: string) {
 		await router.push(`/tickets/${id}/edit`);
 	}
@@ -29,7 +43,7 @@
 				:key="ticket.id"
 				:ticket="ticket"
 				@on-edit="handleEditTicket"
-				@on-delete="handleDeleteTicket"
+				@on-delete="handleConfirmDeleteTicket"
 			/>
 		</template>
 	</div>
