@@ -43,15 +43,15 @@
 		<alert-dialog-portal>
 			<!--	 overlay-->
 			<alert-dialog-overlay
-				class="data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-all duration-200"
+				class="data-[state=open]:animate-overlay-show data-[state=closed]:animate-overlay-hide fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
 			/>
 			<!--	content:centered -->
 			<alert-dialog-content
 				:disable-outside-pointer-events="true"
-				class="rouned-xl data-[state=open]:animate-scale-in data-[state=closed]:animate-scale-out fixed top-1/2 left-1/2 z-50 max-w-md -translate-x-1/2 -translate-y-1/2 border-neutral-200 border-b-neutral-800 bg-white p-6 shadow-xl focus:outline-none"
+				class="data-[state=open]:animate-content-show data-[state=closed]:animate-content-hide fixed top-1/2 left-1/2 z-50 max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border-neutral-200 bg-white p-6 shadow-xl focus:outline-none"
 			>
 				<!--	title-->
-				<alert-dialog-title class="x text-xl font-semibold text-neutral-900">
+				<alert-dialog-title class="text-xl font-semibold text-neutral-900">
 					{{ title }}
 				</alert-dialog-title>
 

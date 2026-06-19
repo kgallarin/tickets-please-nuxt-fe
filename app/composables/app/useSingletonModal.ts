@@ -22,7 +22,7 @@ export function useGlobalModal() {
 		setTimeout(() => {
 			// timeout for animations
 			config.value = null;
-		}, 200);
+		}, 250);
 	}
 
 	async function executeConfirm() {
