@@ -56,12 +56,13 @@ export default defineNuxtConfig({
 		plugins: [tailwindcss()],
 		optimizeDeps: {
 			include: [
+				'@vee-validate/zod',
 				'@vue/devtools-core',
 				'@vue/devtools-kit',
 				'@vueuse/components',
 				'clsx',
-				'tailwind-merge',
 				'reka-ui',
+				'tailwind-merge',
 				'vee-validate',
 				'zod',
 			],
