@@ -2,24 +2,21 @@
 	import BaseSwitch from '@components/base/BaseSwitch.vue';
 	import { z } from 'zod';
 	import { toTypedSchema } from '@vee-validate/zod';
-	import type { UserPayload } from '~~/types/User';
 
-	const createUserSchema = toTypedSchema(
-		z.object({
-			name: z
-				.string({ message: 'This field is required' })
-				.min(4, { message: 'Name must have at least 4 characters ' }),
-			email: z.string({ message: 'This field is required' }).email({ message: 'Must be a valid email. ' }),
-			password: z
-				.string({ message: 'This field is required' })
-				.min(4, { message: 'Password must atleast be 4 characters ' }),
-			isAdmin: z.boolean({ message: 'This field is required' }).default(false),
-		}),
-	);
+	const createUserSchema = z.object({
+		name: z.string({ message: 'This field is required' }).min(4, { message: 'Name must have at least 4 characters ' }),
+		email: z.string({ message: 'This field is required' }).email({ message: 'Must be a valid email. ' }),
+		password: z
+			.string({ message: 'This field is required' })
+			.min(4, { message: 'Password must atleast be 4 characters ' }),
+		isAdmin: z.boolean({ message: 'This field is required' }).default(false),
+	});
 
 	const { handleSubmit, errors, setApiErrorsToForm, defineField, submitCount } = useAppForm({
-		schema: createUserSchema,
+		schema: toTypedSchema(createUserSchema),
 	});
+
+	type UserPayload = z.infer<typeof createUserSchema>;
 
 	const { create } = useUsers();
 

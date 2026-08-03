@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import { z } from 'zod';
 	import { toTypedSchema } from '@vee-validate/zod';
-	import type { LoginPayload } from '~~/types/Auth';
 
 	definePageMeta({
 		layout: 'blank',
@@ -13,16 +12,16 @@
 		description: 'Login to your account',
 	});
 
-	const loginSchema = toTypedSchema(
-		z.object({
-			email: z.string().min(1, { message: 'Email is required ' }).email({ message: 'Must be a valid email address.' }),
-			password: z.string().min(6, { message: 'Password must be at least 6 characters ' }),
-		}),
-	);
+	const loginSchema = z.object({
+		email: z.string().min(1, { message: 'Email is required ' }).email({ message: 'Must be a valid email address.' }),
+		password: z.string().min(6, { message: 'Password must be at least 6 characters ' }),
+	});
 
 	const { defineField, errors, handleSubmit, submitCount } = useAppForm({
-		schema: loginSchema,
+		schema: toTypedSchema(loginSchema),
 	});
+
+	type LoginPayload = z.infer<typeof loginSchema>;
 
 	const [email] = defineField('email');
 	const [password] = defineField('password');
