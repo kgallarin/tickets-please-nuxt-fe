@@ -12,13 +12,11 @@
 		middleware: 'auth',
 	});
 
-	const deleteUserSchema = toTypedSchema(
-		z.object({
-			id: z.string(),
-		}),
-	);
+	const deleteUserSchema = z.object({
+		id: z.string(),
+	});
 	const { setErrors, setFieldValue, formValues, handleSubmit, errors } = useAppForm({
-		schema: deleteUserSchema,
+		schema: toTypedSchema(deleteUserSchema),
 		initialValues: { id: '' },
 	});
 
